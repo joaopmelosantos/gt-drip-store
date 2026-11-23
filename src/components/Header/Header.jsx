@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import CartModal from '../CartModal/CartModal';
@@ -32,6 +32,19 @@ function Header() {
   function closeMenu() {
     setMenuOpen(false);
   }
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
 
   const firstName = user ? user.name.split(' ')[0] : '';
 
@@ -188,6 +201,14 @@ function Header() {
             </button>
           </div>
         </div>
+
+        {menuOpen && (
+          <div
+            className={styles.mobileBackdrop}
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
+        )}
 
         <nav
           className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}
