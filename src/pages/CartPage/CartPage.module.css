@@ -1,0 +1,355 @@
+.pageContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.emptyCard {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.emptyTitle {
+  font-size: 24px;
+  color: var(--dark-gray);
+}
+
+.emptySubtitle {
+  font-size: 16px;
+  color: var(--dark-gray-3);
+}
+
+.exploreButton {
+  width: 200px;
+  height: 44px;
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 334px;
+  gap: 24px;
+  align-items: start;
+}
+
+.cartCard,
+.summaryCard {
+  background-color: var(--white);
+  border-radius: 4px;
+  padding: 30px;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 0.8fr;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+  letter-spacing: 0.75px;
+}
+
+.colCenter {
+  text-align: center;
+}
+
+.colRight {
+  text-align: right;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--light-gray-2);
+  margin: 18px 0;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.itemRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 0.8fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.productInfo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+}
+
+.thumbBox {
+  width: 120px;
+  height: 98px;
+  background-color: #e2e3ff;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.productText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.productName {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--dark-gray);
+}
+
+.productName:hover {
+  color: var(--primary);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--light-gray);
+}
+
+.metaRow strong {
+  color: var(--dark-gray);
+}
+
+.colorSwatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--light-gray-2);
+  display: inline-block;
+}
+
+.quantityCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.qtyControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qtyButton {
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--light-gray-2);
+  border-radius: 4px;
+  background-color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+  cursor: pointer;
+}
+
+.qtyValue {
+  width: 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+.removeButton {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  color: var(--dark-gray-2);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.priceCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.oldPrice {
+  font-size: 13px;
+  color: var(--light-gray-2);
+  text-decoration: line-through;
+}
+
+.unitPrice,
+.totalItemPrice {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.formsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.miniForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.miniLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.inputRow {
+  display: flex;
+  gap: 10px;
+}
+
+.textInput {
+  flex: 1;
+  height: 52px;
+  background-color: var(--light-gray-3);
+  border: none;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: var(--dark-gray);
+  outline: none;
+}
+
+.okButton {
+  width: 96px;
+  height: 52px;
+  background-color: var(--light-gray-3);
+  color: var(--primary);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.okButton:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.helperText {
+  font-size: 12px;
+  color: var(--primary);
+}
+
+.summaryTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+  letter-spacing: 0.75px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--light-gray);
+  margin-bottom: 14px;
+}
+
+.summaryRow strong {
+  color: var(--dark-gray);
+}
+
+.totalSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+.totalAmount {
+  color: var(--error);
+}
+
+.installmentText {
+  font-size: 12px;
+  color: var(--light-gray);
+  text-align: right;
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+.continueButton {
+  width: 100%;
+  height: 44px;
+  background-color: var(--warning);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.continueButton:hover {
+  opacity: 0.92;
+}
+
+@media (max-width: 960px) {
+  .cartGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .itemRow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .quantityCol {
+    align-items: flex-start;
+  }
+
+  .priceCol {
+    align-items: flex-start;
+  }
+
+  .formsRow {
+    grid-template-columns: 1fr;
+  }
+}

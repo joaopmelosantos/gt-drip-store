@@ -1,0 +1,260 @@
+.pageContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+}
+
+.accountGrid {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.sidebarCard,
+.contentCard {
+  background-color: var(--white);
+  border-radius: 4px;
+  padding: 30px;
+}
+
+.sideNav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sideTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.sideLink {
+  font-size: 14px;
+  color: var(--dark-gray-2);
+}
+
+.sideLinkActive {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.logoutLink {
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  color: var(--error);
+  cursor: pointer;
+  padding: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--light-gray-2);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.statusHeader {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--light-gray);
+}
+
+.editButton {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.emptyBox {
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  color: var(--dark-gray-3);
+}
+
+.authLinksRow,
+.formButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ctaButton {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondaryButton {
+  background-color: var(--light-gray-3);
+  color: var(--dark-gray-2);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.orderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--light-gray-3);
+}
+
+.orderProduct {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.thumbBox {
+  width: 72px;
+  height: 58px;
+  background-color: #e2e3ff;
+  border-radius: 4px;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+.thumbBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.orderNumber {
+  font-size: 12px;
+  color: var(--light-gray);
+}
+
+.orderName {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-gray);
+  margin-top: 4px;
+}
+
+.orderStatus {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--warning);
+  white-space: nowrap;
+}
+
+.infoSections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.savedNotice {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--success);
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.infoBlock h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.infoBlock p {
+  font-size: 14px;
+  color: var(--dark-gray);
+}
+
+.infoBlock p span {
+  color: var(--light-gray);
+  margin-right: 6px;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.field input {
+  height: 48px;
+  background-color: var(--light-gray-3);
+  border: none;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: var(--dark-gray);
+}
+
+@media (max-width: 900px) {
+  .accountGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .orderRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
