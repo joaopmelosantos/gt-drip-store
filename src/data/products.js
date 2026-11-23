@@ -104,7 +104,7 @@ export const products = [
     images: [{ src: '/produc-image-5.jpeg' }],
     price: 220,
     priceDiscount: 169.9,
-    reference: 'Casual | K-Swiss | REF:38416715',
+    reference: 'Utilitário | K-Swiss | REF:38416715',
     stars: 4.6,
     rating: 64,
     description:

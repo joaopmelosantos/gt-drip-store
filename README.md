@@ -57,4 +57,4 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica√
 - [x] Implementar o carrossel `<Gallery />` com setas e `showThumbs`
 - [x] Implementar `<FilterGroup />` (checkbox e radio) na `ProductListingPage`
 - [x] Implementar `<ProductOptions />` e `<BuyBox />` completos na `ProductViewPage`
-- [ ] Ajustes de responsividade mobile (frames de 375px do Figma)
+- [x] Ajustes de responsividade mobile (frames de 375px do Figma)
