@@ -3,8 +3,9 @@ import Layout from '../Layout';
 import Section from '../../components/Section/Section';
 import ProductListing from '../../components/ProductListing/ProductListing';
 import Gallery from '../../components/Gallery/Gallery';
+import BuyBox from '../../components/BuyBox/BuyBox';
+import ProductOptions from '../../components/ProductOptions/ProductOptions';
 import { products } from '../../data/products';
-import starIcon from '../../assets/star-icon.svg';
 import styles from './ProductViewPage.module.css';
 
 function ProductViewPage() {
@@ -36,43 +37,34 @@ function ProductViewPage() {
             images={galleryImages}
           />
 
-          <div className={styles.buyBoxPlaceholder}>
-            <h1 className={styles.productTitle}>{product.name}</h1>
-            <p className={styles.reference}>{product.reference}</p>
+          <BuyBox
+            name={product.name}
+            reference={product.reference}
+            stars={product.stars}
+            rating={product.rating}
+            price={product.price}
+            priceDiscount={product.priceDiscount}
+            description={product.description}
+          >
+            {product.sizes && product.sizes.length > 0 && (
+              <ProductOptions
+                title="Tamanho"
+                options={product.sizes}
+                radius="4px"
+                shape="square"
+                type="text"
+              />
+            )}
 
-            <div className={styles.ratingRow}>
-              <span className={styles.starsBadge}>
-                {product.stars}
-                <img src={starIcon} alt="Estrela" className={styles.starIcon} />
-              </span>
-              <span className={styles.ratingCount}>
-                ({product.rating} avaliações)
-              </span>
-            </div>
-
-            <div className={styles.priceRow}>
-              {product.priceDiscount ? (
-                <>
-                  <span className={styles.priceCurrent}>
-                    R$ {product.priceDiscount.toFixed(2)}
-                  </span>
-                  <span className={styles.priceOld}>
-                    R$ {product.price.toFixed(2)}
-                  </span>
-                </>
-              ) : (
-                <span className={styles.priceCurrent}>
-                  R$ {product.price.toFixed(2)}
-                </span>
-              )}
-            </div>
-
-            <p className={styles.description}>{product.description}</p>
-
-            <button type="button" className={styles.buyButton}>
-              COMPRAR
-            </button>
-          </div>
+            {product.colors && product.colors.length > 0 && (
+              <ProductOptions
+                title="Cor"
+                options={product.colors}
+                shape="circle"
+                type="color"
+              />
+            )}
+          </BuyBox>
         </div>
       </div>
 
