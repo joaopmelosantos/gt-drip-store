@@ -21,9 +21,7 @@ function ProductViewPage() {
       fallbackProducts.find((item) => String(item.id) === String(id)) ||
       fallbackProducts[0]
   );
-  const [recommendedProducts, setRecommendedProducts] = useState(
-    fallbackProducts.slice(1, 5)
-  );
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
 
@@ -44,10 +42,19 @@ function ProductViewPage() {
         setSelectedColor(
           (foundProduct.colors && foundProduct.colors[0]) || '#1F1F1F'
         );
+        const sameCategory = allProducts.filter(
+          (item) =>
+            String(item.id) !== String(foundProduct.id) &&
+            item.category === foundProduct.category
+        );
+
         setRecommendedProducts(
-          allProducts
-            .filter((item) => String(item.id) !== String(foundProduct.id))
-            .slice(0, 4)
+          (sameCategory.length > 0
+            ? sameCategory
+            : allProducts.filter(
+                (item) => String(item.id) !== String(foundProduct.id)
+              )
+          ).slice(0, 4)
         );
       }
     }
@@ -133,7 +140,10 @@ function ProductViewPage() {
       <Section
         title="Produtos Relacionados"
         titleAlign="left"
-        link={{ text: 'Ver todos', href: '/products' }}
+        link={{
+          text: 'Ver todos',
+          href: `/products?filter=${encodeURIComponent(product.category)}`,
+        }}
       >
         <ProductListing products={recommendedProducts} />
       </Section>

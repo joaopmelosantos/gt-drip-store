@@ -36,12 +36,32 @@ function CartPage() {
   useEffect(() => {
     let active = true;
     getAllProducts().then((list) => {
-      if (active) setRelatedProducts(list.slice(0, 4));
+      if (!active) return;
+
+      const cartIds = new Set(items.map((item) => String(item.id)));
+      const cartCategories = new Set(
+        list
+          .filter((prod) => cartIds.has(String(prod.id)))
+          .map((prod) => prod.category)
+      );
+
+      const filtered =
+        cartCategories.size > 0
+          ? list.filter(
+              (prod) =>
+                cartCategories.has(prod.category) &&
+                !cartIds.has(String(prod.id))
+            )
+          : list;
+
+      setRelatedProducts(
+        (filtered.length > 0 ? filtered : list).slice(0, 4)
+      );
     });
     return () => {
       active = false;
     };
-  }, []);
+  }, [items]);
 
   function handleCouponSubmit(event) {
     event.preventDefault();
