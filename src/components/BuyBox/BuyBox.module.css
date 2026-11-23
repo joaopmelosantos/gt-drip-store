@@ -1,0 +1,114 @@
+.buyBox {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.name {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  color: var(--dark-gray);
+}
+
+.reference {
+  font-size: 12px;
+  color: var(--dark-gray-3);
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.starsBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--warning);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.starIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.ratingText {
+  font-size: 14px;
+  color: var(--light-gray);
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.priceMain {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.priceOld {
+  font-size: 16px;
+  color: var(--light-gray-2);
+  text-decoration: line-through;
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.descriptionLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--light-gray);
+}
+
+.description {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--dark-gray-2);
+}
+
+.optionsArea {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 8px 0;
+}
+
+.buyButton {
+  width: 220px;
+  height: 48px;
+  background-color: var(--warning);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.75px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+
+.buyButton:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 560px) {
+  .buyButton {
+    width: 100%;
+  }
+}
