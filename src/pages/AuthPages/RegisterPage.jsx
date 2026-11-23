@@ -172,12 +172,12 @@ function RegisterPage() {
 
             <div className={styles.showcaseVisual} aria-hidden="true">
               <img
-                src="/figma/nike-white-red.png"
+                src="/figma/auth-sneaker-1.png"
                 alt=""
                 className={styles.shoeTop}
               />
               <img
-                src="/figma/air-jordan.png"
+                src="/figma/auth-sneaker-2.png"
                 alt=""
                 className={styles.shoeBottom}
               />
