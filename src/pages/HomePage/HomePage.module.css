@@ -236,6 +236,20 @@
     grid-template-columns: 1fr;
   }
 
+  .collectionCard {
+    height: 212px;
+  }
+
+  .collectionBadge {
+    top: 20px;
+    left: 20px;
+  }
+
+  .collectionButton {
+    bottom: 20px;
+    left: 20px;
+  }
+
   .categoriesRow {
     flex-wrap: nowrap;
     justify-content: flex-start;

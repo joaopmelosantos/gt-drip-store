@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom';
 import Layout from '../Layout';
 import ProductListing from '../../components/ProductListing/ProductListing';
 import FilterGroup from '../../components/FilterGroup/FilterGroup';
-import Reveal from '../../components/Reveal/Reveal';
 import { getAllProducts, normalizeText } from '../../services/productService';
 import styles from './ProductListingPage.module.css';
 
@@ -20,6 +19,7 @@ function ProductListingPage() {
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('');
   const [sortOpen, setSortOpen] = useState(false);
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const sortRef = useRef(null);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -53,6 +53,7 @@ function ProductListingPage() {
     function handleEscape(event) {
       if (event.key === 'Escape') {
         setSortOpen(false);
+        setMobileFilterOpen(false);
       }
     }
 
@@ -186,91 +187,135 @@ function ProductListingPage() {
             </span>
           </h1>
 
-          <div className={styles.sortWrapper} ref={sortRef}>
+          <div className={styles.controlsRow}>
+            <div className={styles.sortWrapper} ref={sortRef}>
+              <button
+                type="button"
+                className={`${styles.sortTrigger} ${sortOpen ? styles.sortTriggerOpen : ''}`}
+                onClick={() => setSortOpen((prev) => !prev)}
+                aria-haspopup="listbox"
+                aria-expanded={sortOpen}
+              >
+                <span className={styles.sortTextGroup}>
+                  <span className={styles.sortInlineLabel}>Ordenar por:</span>
+                  <span className={styles.sortCurrentValue}>
+                    {currentSortLabel}
+                  </span>
+                </span>
+                <svg
+                  className={`${styles.selectChevron} ${sortOpen ? styles.chevronOpen : ''}`}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              {sortOpen && (
+                <div className={styles.sortMenu} role="listbox">
+                  {SORT_OPTIONS.map((option) => {
+                    const active = option.value === sortOrder;
+                    return (
+                      <button
+                        key={option.value || 'default'}
+                        type="button"
+                        role="option"
+                        aria-selected={active}
+                        className={`${styles.sortOption} ${active ? styles.sortOptionActive : ''}`}
+                        onClick={() => {
+                          setSortOrder(option.value);
+                          setSortOpen(false);
+                        }}
+                      >
+                        <span>{option.label}</span>
+                        {active && (
+                          <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
             <button
               type="button"
-              className={`${styles.sortTrigger} ${sortOpen ? styles.sortTriggerOpen : ''}`}
-              onClick={() => setSortOpen((prev) => !prev)}
-              aria-haspopup="listbox"
-              aria-expanded={sortOpen}
+              className={styles.mobileFilterButton}
+              onClick={() => setMobileFilterOpen(true)}
+              aria-label="Abrir filtros"
             >
-              <span className={styles.sortTextGroup}>
-                <span className={styles.sortInlineLabel}>Ordenar por:</span>
-                <span className={styles.sortCurrentValue}>
-                  {currentSortLabel}
-                </span>
-              </span>
               <svg
-                className={`${styles.selectChevron} ${sortOpen ? styles.chevronOpen : ''}`}
-                width="16"
-                height="16"
+                width="22"
+                height="22"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2.2"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
               >
-                <polyline points="6 9 12 15 18 9" />
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
               </svg>
             </button>
-
-            {sortOpen && (
-              <div className={styles.sortMenu} role="listbox">
-                {SORT_OPTIONS.map((option) => {
-                  const active = option.value === sortOrder;
-                  return (
-                    <button
-                      key={option.value || 'default'}
-                      type="button"
-                      role="option"
-                      aria-selected={active}
-                      className={`${styles.sortOption} ${active ? styles.sortOptionActive : ''}`}
-                      onClick={() => {
-                        setSortOrder(option.value);
-                        setSortOpen(false);
-                      }}
-                    >
-                      <span>{option.label}</span>
-                      {active && (
-                        <svg
-                          width="15"
-                          height="15"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.6"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          aria-hidden="true"
-                        >
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
           </div>
         </div>
 
         <div className={styles.contentGrid}>
-          <aside className={styles.sidebar}>
-            <Reveal>
-              <div className={styles.filterBox}>
+          {mobileFilterOpen && (
+            <div
+              className={styles.filterBackdrop}
+              onClick={() => setMobileFilterOpen(false)}
+              aria-hidden="true"
+            />
+          )}
+
+          <aside
+            className={`${styles.sidebar} ${
+              mobileFilterOpen ? styles.sidebarOpen : ''
+            }`}
+          >
+            <div className={styles.filterBox}>
                 <div className={styles.filterHeader}>
                   <h2 className={styles.filterTitle}>Filtrar por</h2>
-                  {hasActiveFilters && (
+                  <div className={styles.filterHeaderActions}>
+                    {hasActiveFilters && (
+                      <button
+                        type="button"
+                        className={styles.clearButton}
+                        onClick={handleClearFilters}
+                      >
+                        Limpar
+                      </button>
+                    )}
                     <button
                       type="button"
-                      className={styles.clearButton}
-                      onClick={handleClearFilters}
+                      className={styles.closeFilterButton}
+                      onClick={() => setMobileFilterOpen(false)}
+                      aria-label="Fechar filtros"
                     >
-                      Limpar
+                      ✕
                     </button>
-                  )}
+                  </div>
                 </div>
                 <hr className={styles.filterDivider} />
 
@@ -322,7 +367,6 @@ function ProductListingPage() {
                   />
                 </div>
               </div>
-            </Reveal>
           </aside>
 
           <div className={styles.listArea}>

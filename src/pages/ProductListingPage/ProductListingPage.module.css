@@ -28,6 +28,24 @@
 }
 
 /* Seletor customizado de ordenação */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobileFilterButton,
+.filterBackdrop,
+.closeFilterButton {
+  display: none;
+}
+
+.filterHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .sortWrapper {
   position: relative;
   min-width: 312px;
@@ -212,9 +230,33 @@
     gap: 20px;
   }
 
-  .sortWrapper {
+  .topBar {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .controlsRow {
     width: 100%;
+  }
+
+  .sortWrapper {
+    flex: 1;
     min-width: 0;
+  }
+
+  .mobileFilterButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
   }
 
   .contentGrid {
@@ -222,7 +264,51 @@
     gap: 20px;
   }
 
+  .filterBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(31, 31, 31, 0.35);
+    z-index: 69;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 308px;
+    max-width: 82vw;
+    background-color: var(--white);
+    overflow-y: auto;
+    z-index: 70;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition:
+      transform 0.28s var(--ease-out-smooth),
+      visibility 0.28s ease;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
   .filterBox {
-    padding: 22px 20px;
+    padding: 24px 20px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .closeFilterButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: var(--dark-gray-3);
+    cursor: pointer;
+    padding: 2px;
   }
 }

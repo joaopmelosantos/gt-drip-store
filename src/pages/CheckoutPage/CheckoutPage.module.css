@@ -260,4 +260,8 @@
   .twoCols {
     grid-template-columns: 1fr;
   }
+
+  .desktopSubmitCard {
+    display: none;
+  }
 }

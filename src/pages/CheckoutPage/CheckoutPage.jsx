@@ -317,7 +317,7 @@ function CheckoutPage() {
               )}
             </section>
 
-            <section className={styles.card}>
+            <section className={`${styles.card} ${styles.desktopSubmitCard}`}>
               <h2 className={styles.cardTitle}>Finalizar Compra</h2>
               <hr className={styles.divider} />
               <div className={styles.bottomTotalRow}>
