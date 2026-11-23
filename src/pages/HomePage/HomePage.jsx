@@ -133,16 +133,14 @@ function HomePage() {
                 className={styles.categoryItem}
               >
                 <div
-                  className={`${styles.categoryCircle} ${
-                    category.active ? styles.categoryCircleActive : ''
-                  }`}
+                  className={`${styles.categoryCircle} ${category.active ? styles.categoryCircleActive : ''
+                    }`}
                 >
                   <img
                     src={category.icon}
                     alt={category.name}
-                    className={`${styles.categoryIcon} ${
-                      category.flipY ? styles.flipIcon : ''
-                    }`}
+                    className={`${styles.categoryIcon} ${category.flipY ? styles.flipIcon : ''
+                      }`}
                   />
                 </div>
                 <span className={styles.categoryLabel}>{category.name}</span>
