@@ -105,11 +105,6 @@
   cursor: pointer;
 }
 
-.studyNote {
-  font-size: 14px;
-  color: var(--dark-gray-3);
-}
-
 @media (max-width: 900px) {
   .detailsGrid {
     grid-template-columns: 1fr;

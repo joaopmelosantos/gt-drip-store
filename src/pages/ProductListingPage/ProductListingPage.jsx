@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Layout from '../Layout';
 import Section from '../../components/Section/Section';
+import ProductListing from '../../components/ProductListing/ProductListing';
 import { products } from '../../data/products';
 import styles from './ProductListingPage.module.css';
 
@@ -12,7 +13,7 @@ function ProductListingPage() {
   // Lê o termo ?filter=... enviado pela busca do Header
   const searchFilter = (searchParams.get('filter') || '').toLowerCase();
 
-  // Filtragem simples por nome ou categoria
+  // Filtragem simples por nome, categoria ou marca
   let filteredProducts = products.filter((product) => {
     if (!searchFilter) return true;
     return (
@@ -68,43 +69,7 @@ function ProductListingPage() {
             title={`Resultados${searchFilter ? ` para "${searchFilter}"` : ''} - ${filteredProducts.length} produto(s)`}
             titleAlign="left"
           >
-            <div className={styles.productsGrid}>
-              {filteredProducts.map((product) => (
-                <Link
-                  key={product.id}
-                  to={`/product/${product.id}`}
-                  className={styles.productCard}
-                >
-                  <div className={styles.productImageBox}>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className={styles.productImage}
-                    />
-                  </div>
-                  <span className={styles.productCategory}>
-                    {product.category}
-                  </span>
-                  <h3 className={styles.productName}>{product.name}</h3>
-                  <div className={styles.priceRow}>
-                    {product.priceDiscount ? (
-                      <>
-                        <span className={styles.priceOld}>
-                          R$ {product.price.toFixed(2)}
-                        </span>
-                        <span className={styles.priceCurrent}>
-                          R$ {product.priceDiscount.toFixed(2)}
-                        </span>
-                      </>
-                    ) : (
-                      <span className={styles.priceCurrent}>
-                        R$ {product.price.toFixed(2)}
-                      </span>
-                    )}
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <ProductListing products={filteredProducts} columns={3} />
           </Section>
         </div>
       </div>

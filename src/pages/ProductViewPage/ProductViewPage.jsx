@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Layout from '../Layout';
 import Section from '../../components/Section/Section';
+import ProductListing from '../../components/ProductListing/ProductListing';
 import { products } from '../../data/products';
 import starIcon from '../../assets/star-icon.svg';
 import styles from './ProductViewPage.module.css';
@@ -16,6 +17,11 @@ function ProductViewPage() {
     product.images && product.images.length > 0
       ? product.images[0].src
       : product.image;
+
+  // Seleciona até 4 outros produtos para exibir em "Produtos recomendados"
+  const recommendedProducts = products
+    .filter((item) => item.id !== product.id)
+    .slice(0, 4);
 
   return (
     <Layout>
@@ -74,10 +80,7 @@ function ProductViewPage() {
         titleAlign="left"
         link={{ text: 'Ver todos', href: '/products' }}
       >
-        <p className={styles.studyNote}>
-          Espaço reservado para estudo de{' '}
-          <code>&lt;ProductListing /&gt;</code> com 4 produtos recomendados.
-        </p>
+        <ProductListing products={recommendedProducts} />
       </Section>
     </Layout>
   );
