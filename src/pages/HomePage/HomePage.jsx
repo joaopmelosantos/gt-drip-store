@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import Layout from '../Layout';
 import Section from '../../components/Section/Section';
+import ProductListing from '../../components/ProductListing/ProductListing';
 import { products } from '../../data/products';
 import styles from './HomePage.module.css';
 
@@ -40,42 +40,7 @@ function HomePage() {
         titleAlign="left"
         link={{ text: 'Ver todos', href: '/products' }}
       >
-        {/* Listagem inicial simples para estudo (será extraída para ProductListing e ProductCard) */}
-        <div className={styles.productsGrid}>
-          {products.slice(0, 8).map((product) => (
-            <Link
-              key={product.id}
-              to={`/product/${product.id}`}
-              className={styles.productCard}
-            >
-              <div className={styles.productImageBox}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className={styles.productImage}
-                />
-              </div>
-              <span className={styles.productCategory}>{product.category}</span>
-              <h3 className={styles.productName}>{product.name}</h3>
-              <div className={styles.priceRow}>
-                {product.priceDiscount ? (
-                  <>
-                    <span className={styles.priceOld}>
-                      R$ {product.price.toFixed(2)}
-                    </span>
-                    <span className={styles.priceCurrent}>
-                      R$ {product.priceDiscount.toFixed(2)}
-                    </span>
-                  </>
-                ) : (
-                  <span className={styles.priceCurrent}>
-                    R$ {product.price.toFixed(2)}
-                  </span>
-                )}
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ProductListing products={products.slice(0, 8)} />
       </Section>
     </Layout>
   );

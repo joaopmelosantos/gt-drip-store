@@ -28,6 +28,8 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica�
 │   │   ├── Footer/
 │   │   ├── Header/
 │   │   ├── Logo/
+│   │   ├── ProductCard/
+│   │   ├── ProductListing/
 │   │   └── Section/
 │   ├── data/             # Dados simples em JavaScript para estudo (products.js)
 │   ├── pages/            # Páginas principais e Layout compartilhado
@@ -47,7 +49,7 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica�
 - [x] Configuração inicial (Vite + React + JavaScript + CSS Modules + React Router)
 - [x] Variáveis globais de cores e fonte `Inter` (`src/styles/variables.css`)
 - [x] Componentes de layout base (`Logo`, `Header`, `Footer`, `Layout`, `Section`)
-- [ ] Extrair e evoluir `<ProductCard />` e `<ProductListing />` (`src/components/`)
+- [x] Extrair e evoluir `<ProductCard />` e `<ProductListing />` (`src/components/`)
 - [ ] Implementar o carrossel `<Gallery />` com setas e `showThumbs`
 - [ ] Implementar `<FilterGroup />` (checkbox e radio) na `ProductListingPage`
 - [ ] Implementar `<ProductOptions />` e `<BuyBox />` completos na `ProductViewPage`
