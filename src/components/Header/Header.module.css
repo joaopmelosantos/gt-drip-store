@@ -109,6 +109,35 @@
   justify-content: center;
   margin-left: 8px;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.userGreeting {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+  white-space: nowrap;
+}
+
+.userGreeting:hover {
+  color: var(--primary);
+}
+
+.logoutButton {
+  background: transparent;
+  border: 1px solid var(--light-gray-2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--dark-gray-2);
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .cartBadge {

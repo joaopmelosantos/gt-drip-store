@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../Logo/Logo';
+import CartModal from '../CartModal/CartModal';
+import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext';
 import miniCartIcon from '../../assets/mini-cart.svg';
 import styles from './Header.module.css';
 
@@ -8,6 +11,8 @@ function Header() {
   const [searchText, setSearchText] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { totalItems, isCartModalOpen, setIsCartModalOpen } = useCart();
+  const { user, logout } = useAuth();
 
   // Executa a busca redirecionando para /products?filter=...
   function handleSearch(event) {
@@ -25,6 +30,8 @@ function Header() {
   function closeMenu() {
     setMenuOpen(false);
   }
+
+  const firstName = user ? user.name.split(' ')[0] : '';
 
   return (
     <header className={styles.header}>
@@ -74,16 +81,41 @@ function Header() {
           </form>
 
           <div className={styles.actions}>
-            <Link to="/register" className={styles.registerLink}>
-              Cadastre-se
-            </Link>
-            <Link to="/login" className={styles.loginButton}>
-              Entrar
-            </Link>
-            <div className={styles.cartWrapper}>
+            {user ? (
+              <>
+                <Link to="/profile" className={styles.userGreeting}>
+                  Olá, {firstName}
+                </Link>
+                <button
+                  type="button"
+                  className={styles.logoutButton}
+                  onClick={logout}
+                >
+                  Sair
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/register" className={styles.registerLink}>
+                  Cadastre-se
+                </Link>
+                <Link to="/login" className={styles.loginButton}>
+                  Entrar
+                </Link>
+              </>
+            )}
+
+            <button
+              type="button"
+              className={styles.cartWrapper}
+              onClick={() => setIsCartModalOpen(!isCartModalOpen)}
+              aria-label="Abrir carrinho de compras"
+            >
               <img src={miniCartIcon} alt="Carrinho de compras" />
-              <span className={styles.cartBadge}>2</span>
-            </div>
+              {totalItems > 0 && (
+                <span className={styles.cartBadge}>{totalItems}</span>
+              )}
+            </button>
           </div>
         </div>
 
@@ -96,7 +128,9 @@ function Header() {
             end
             onClick={closeMenu}
             className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
+              isActive
+                ? `${styles.navLink} ${styles.navLinkActive}`
+                : styles.navLink
             }
           >
             Home
@@ -105,7 +139,9 @@ function Header() {
             to="/products"
             onClick={closeMenu}
             className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
+              isActive
+                ? `${styles.navLink} ${styles.navLinkActive}`
+                : styles.navLink
             }
           >
             Produtos
@@ -114,7 +150,9 @@ function Header() {
             to="/categories"
             onClick={closeMenu}
             className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
+              isActive
+                ? `${styles.navLink} ${styles.navLinkActive}`
+                : styles.navLink
             }
           >
             Categorias
@@ -123,26 +161,58 @@ function Header() {
             to="/orders"
             onClick={closeMenu}
             className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
+              isActive
+                ? `${styles.navLink} ${styles.navLinkActive}`
+                : styles.navLink
             }
           >
             Meus Pedidos
           </NavLink>
 
           <div className={styles.mobileActions}>
-            <Link to="/login" className={styles.loginButton} onClick={closeMenu}>
-              Entrar
-            </Link>
-            <Link
-              to="/register"
-              className={styles.registerLink}
-              onClick={closeMenu}
-            >
-              Cadastre-se
-            </Link>
+            {user ? (
+              <>
+                <Link
+                  to="/profile"
+                  className={styles.loginButton}
+                  onClick={closeMenu}
+                >
+                  Olá, {firstName}
+                </Link>
+                <button
+                  type="button"
+                  className={styles.logoutButton}
+                  onClick={() => {
+                    logout();
+                    closeMenu();
+                  }}
+                >
+                  Sair
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className={styles.loginButton}
+                  onClick={closeMenu}
+                >
+                  Entrar
+                </Link>
+                <Link
+                  to="/register"
+                  className={styles.registerLink}
+                  onClick={closeMenu}
+                >
+                  Cadastre-se
+                </Link>
+              </>
+            )}
           </div>
         </nav>
       </div>
+
+      <CartModal />
     </header>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import starIcon from '../../assets/star-icon.svg';
 import styles from './BuyBox.module.css';
 
@@ -30,6 +31,7 @@ function BuyBox({
   price,
   priceDiscount,
   description,
+  onBuy,
   children,
 }) {
   const [boughtFeedback, setBoughtFeedback] = useState(false);
@@ -37,8 +39,11 @@ function BuyBox({
   const filledStars = Math.round(Number(stars) || 0);
 
   function handleBuy() {
+    if (onBuy) {
+      onBuy();
+    }
     setBoughtFeedback(true);
-    setTimeout(() => setBoughtFeedback(false), 2500);
+    setTimeout(() => setBoughtFeedback(false), 3000);
   }
 
   return (
@@ -85,9 +90,17 @@ function BuyBox({
 
       {children && <div className={styles.optionsArea}>{children}</div>}
 
-      <button type="button" className={styles.buyButton} onClick={handleBuy}>
-        {boughtFeedback ? 'ADICIONADO!' : 'COMPRAR'}
-      </button>
+      <div className={styles.buyActions}>
+        <button type="button" className={styles.buyButton} onClick={handleBuy}>
+          {boughtFeedback ? 'ADICIONADO!' : 'COMPRAR'}
+        </button>
+
+        {boughtFeedback && (
+          <Link to="/cart" className={styles.goToCartLink}>
+            Ir para o carrinho →
+          </Link>
+        )}
+      </div>
     </div>
   );
 }

@@ -7,12 +7,15 @@ import Gallery from '../../components/Gallery/Gallery';
 import BuyBox from '../../components/BuyBox/BuyBox';
 import ProductOptions from '../../components/ProductOptions/ProductOptions';
 import Reveal from '../../components/Reveal/Reveal';
+import { useCart } from '../../context/CartContext';
 import { products as fallbackProducts } from '../../data/products';
 import { getAllProducts, getProductById } from '../../services/productService';
 import styles from './ProductViewPage.module.css';
 
 function ProductViewPage() {
   const { id } = useParams();
+  const { addItem } = useCart();
+
   const [product, setProduct] = useState(
     () =>
       fallbackProducts.find((item) => String(item.id) === String(id)) ||
@@ -21,6 +24,8 @@ function ProductViewPage() {
   const [recommendedProducts, setRecommendedProducts] = useState(
     fallbackProducts.slice(1, 5)
   );
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
 
   useEffect(() => {
     let active = true;
@@ -33,6 +38,12 @@ function ProductViewPage() {
 
       if (active) {
         setProduct(foundProduct);
+        setSelectedSize(
+          (foundProduct.sizes && foundProduct.sizes[0]) || 'Único'
+        );
+        setSelectedColor(
+          (foundProduct.colors && foundProduct.colors[0]) || '#1F1F1F'
+        );
         setRecommendedProducts(
           allProducts
             .filter((item) => String(item.id) !== String(foundProduct.id))
@@ -63,7 +74,9 @@ function ProductViewPage() {
           <span>/</span>
           <Link to="/products">Produtos</Link>
           <span>/</span>
-          <Link to={`/products?filter=${encodeURIComponent(product.category)}`}>
+          <Link
+            to={`/products?filter=${encodeURIComponent(product.category)}`}
+          >
             {product.category}
           </Link>
           <span>/</span>
@@ -90,6 +103,7 @@ function ProductViewPage() {
               price={product.price}
               priceDiscount={product.priceDiscount}
               description={product.description}
+              onBuy={() => addItem(product, selectedSize, selectedColor)}
             >
               {product.sizes && product.sizes.length > 0 && (
                 <ProductOptions
@@ -98,6 +112,7 @@ function ProductViewPage() {
                   radius="4px"
                   shape="square"
                   type="text"
+                  onSelect={(val) => setSelectedSize(val)}
                 />
               )}
 
@@ -107,6 +122,7 @@ function ProductViewPage() {
                   options={product.colors}
                   shape="circle"
                   type="color"
+                  onSelect={(val) => setSelectedColor(val)}
                 />
               )}
             </BuyBox>

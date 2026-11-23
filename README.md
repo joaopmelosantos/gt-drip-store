@@ -26,6 +26,7 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica�
 │   ├── assets/           # Ícones e logomarcas em SVG
 │   ├── components/       # Componentes reutilizáveis (com CSS Modules)
 │   │   ├── BuyBox/
+│   │   ├── CartModal/
 │   │   ├── FilterGroup/
 │   │   ├── Footer/
 │   │   ├── Gallery/
@@ -36,10 +37,16 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica�
 │   │   ├── ProductOptions/
 │   │   ├── Reveal/
 │   │   └── Section/
+│   ├── context/          # Estado global sem backend com localStorage (CartContext, AuthContext)
 │   ├── data/             # Dados simples em JavaScript para estudo (products.js)
 │   ├── pages/            # Páginas principais e Layout compartilhado
+│   │   ├── AccountPage/
+│   │   ├── AuthPages/
+│   │   ├── CartPage/
 │   │   ├── CategoriesPage/
+│   │   ├── CheckoutPage/
 │   │   ├── HomePage/
+│   │   ├── OrderSuccessPage/
 │   │   ├── ProductListingPage/
 │   │   ├── ProductViewPage/
 │   │   └── Layout.jsx

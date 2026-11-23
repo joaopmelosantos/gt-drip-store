@@ -1,0 +1,150 @@
+.pageContainer {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: 4px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heroHeader {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.celebrationIcon {
+  font-size: 48px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+.orderId {
+  font-size: 14px;
+  color: var(--dark-gray-3);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--light-gray-2);
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.infoBlock h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+  margin-bottom: 4px;
+}
+
+.infoBlock p {
+  font-size: 14px;
+  color: var(--dark-gray);
+}
+
+.infoBlock p span {
+  color: var(--light-gray);
+  margin-right: 6px;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.itemRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.thumbBox {
+  width: 72px;
+  height: 58px;
+  background-color: #e2e3ff;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.thumbBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.itemName {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+.itemMeta {
+  font-size: 12px;
+  color: var(--light-gray);
+}
+
+.totalBox {
+  background-color: rgba(246, 170, 28, 0.12);
+  border: 1px solid rgba(246, 170, 28, 0.35);
+  border-radius: 4px;
+  padding: 18px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+.installment {
+  font-size: 12px;
+  color: var(--light-gray);
+  text-align: right;
+  margin-top: 4px;
+}
+
+.actionsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.ordersLink {
+  font-size: 14px;
+  color: var(--dark-gray-2);
+  text-decoration: underline;
+}
+
+.homeButton {
+  width: 100%;
+  height: 48px;
+  background-color: var(--warning);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

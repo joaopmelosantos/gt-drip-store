@@ -107,6 +107,21 @@
   margin: 10px 0;
 }
 
+.buyActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.goToCartLink {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: underline;
+}
+
 .buyButton {
   width: 220px;
   height: 48px;
@@ -118,7 +133,6 @@
   font-weight: 700;
   letter-spacing: 0.75px;
   cursor: pointer;
-  margin-top: 8px;
   transition:
     background-color 0.2s ease,
     transform 0.2s ease,
