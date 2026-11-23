@@ -6,12 +6,14 @@ import styles from './Header.module.css';
 
 function Header() {
   const [searchText, setSearchText] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   // Executa a busca redirecionando para /products?filter=...
   function handleSearch(event) {
     event.preventDefault();
     const termo = searchText.trim();
+    setMenuOpen(false);
 
     if (termo) {
       navigate(`/products?filter=${encodeURIComponent(termo)}`);
@@ -20,11 +22,25 @@ function Header() {
     }
   }
 
+  function closeMenu() {
+    setMenuOpen(false);
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.topRow}>
-          <Link to="/" aria-label="Ir para a página inicial">
+          <button
+            type="button"
+            className={styles.menuToggle}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Abrir menu de navegação"
+            aria-expanded={menuOpen}
+          >
+            ☰
+          </button>
+
+          <Link to="/" aria-label="Ir para a página inicial" onClick={closeMenu}>
             <Logo variant="header" />
           </Link>
 
@@ -70,10 +86,14 @@ function Header() {
           </div>
         </div>
 
-        <nav className={styles.nav} aria-label="Navegação principal">
+        <nav
+          className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}
+          aria-label="Navegação principal"
+        >
           <NavLink
             to="/"
             end
+            onClick={closeMenu}
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
             }
@@ -82,6 +102,7 @@ function Header() {
           </NavLink>
           <NavLink
             to="/products"
+            onClick={closeMenu}
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
             }
@@ -90,6 +111,7 @@ function Header() {
           </NavLink>
           <NavLink
             to="/categories"
+            onClick={closeMenu}
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
             }
@@ -98,12 +120,26 @@ function Header() {
           </NavLink>
           <NavLink
             to="/orders"
+            onClick={closeMenu}
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
             }
           >
             Meus Pedidos
           </NavLink>
+
+          <div className={styles.mobileActions}>
+            <Link to="/login" className={styles.loginButton} onClick={closeMenu}>
+              Entrar
+            </Link>
+            <Link
+              to="/register"
+              className={styles.registerLink}
+              onClick={closeMenu}
+            >
+              Cadastre-se
+            </Link>
+          </div>
         </nav>
       </div>
     </header>

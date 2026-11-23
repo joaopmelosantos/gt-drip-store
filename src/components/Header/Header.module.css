@@ -21,6 +21,16 @@
   flex-wrap: wrap;
 }
 
+.menuToggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: var(--dark-gray);
+  cursor: pointer;
+  padding: 4px;
+}
+
 .searchForm {
   flex: 1;
   min-width: 240px;
@@ -113,4 +123,58 @@
   color: var(--primary);
   font-weight: 700;
   border-bottom-color: var(--primary);
+}
+
+.mobileActions {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .menuToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .searchForm {
+    order: 3;
+    min-width: 100%;
+    height: 48px;
+  }
+
+  .actions .registerLink,
+  .actions .loginButton {
+    display: none;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--light-gray-3);
+  }
+
+  .navOpen {
+    display: flex;
+  }
+
+  .mobileActions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding-top: 12px;
+    border-top: 1px solid var(--light-gray-3);
+  }
+
+  .mobileActions .loginButton {
+    width: 100%;
+  }
 }
