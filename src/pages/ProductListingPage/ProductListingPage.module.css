@@ -55,14 +55,14 @@
 }
 
 .contentGrid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 308px minmax(0, 1fr);
   gap: 28px;
-  align-items: flex-start;
+  align-items: start;
 }
 
 .sidebar {
-  width: 308px;
-  flex-shrink: 0;
+  width: 100%;
 }
 
 .filterBox {
@@ -117,10 +117,6 @@
   }
 
   .contentGrid {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

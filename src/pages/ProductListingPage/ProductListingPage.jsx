@@ -139,8 +139,8 @@ function ProductListingPage() {
         </div>
 
         <div className={styles.contentGrid}>
-          <Reveal>
-            <aside className={styles.sidebar}>
+          <aside className={styles.sidebar}>
+            <Reveal>
               <div className={styles.filterBox}>
                 <div className={styles.filterHeader}>
                   <h2 className={styles.filterTitle}>Filtrar por</h2>
@@ -201,8 +201,8 @@ function ProductListingPage() {
                   />
                 </div>
               </div>
-            </aside>
-          </Reveal>
+            </Reveal>
+          </aside>
 
           <div className={styles.listArea}>
             <ProductListing products={filteredProducts} columns={3} />
