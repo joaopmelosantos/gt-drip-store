@@ -1,0 +1,107 @@
+.gallery {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--white);
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.slideImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.arrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+
+.arrowButton:hover:not(:disabled) {
+  background-color: var(--white);
+}
+
+.arrowButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.arrowLeft {
+  left: 16px;
+}
+
+.arrowRight {
+  right: 16px;
+}
+
+.thumbsRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.thumbButton {
+  width: 117px;
+  height: 95px;
+  padding: 0;
+  border: 2px solid transparent;
+  background-color: var(--white);
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.thumbSelected {
+  border-color: var(--primary);
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .viewport {
+    max-height: 360px;
+  }
+
+  .thumbButton {
+    width: 76px;
+    height: 64px;
+  }
+}

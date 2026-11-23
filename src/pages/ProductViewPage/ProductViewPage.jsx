@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import Layout from '../Layout';
 import Section from '../../components/Section/Section';
 import ProductListing from '../../components/ProductListing/ProductListing';
+import Gallery from '../../components/Gallery/Gallery';
 import { products } from '../../data/products';
 import starIcon from '../../assets/star-icon.svg';
 import styles from './ProductViewPage.module.css';
@@ -13,10 +14,10 @@ function ProductViewPage() {
   const product =
     products.find((item) => item.id === Number(id)) || products[0];
 
-  const mainImage =
+  const galleryImages =
     product.images && product.images.length > 0
-      ? product.images[0].src
-      : product.image;
+      ? product.images
+      : [{ src: product.image }];
 
   // Seleciona até 4 outros produtos para exibir em "Produtos recomendados"
   const recommendedProducts = products
@@ -27,13 +28,13 @@ function ProductViewPage() {
     <Layout>
       <div className={styles.pageContainer}>
         <div className={styles.detailsGrid}>
-          <div className={styles.galleryPlaceholder}>
-            <img
-              src={mainImage}
-              alt={product.name}
-              className={styles.mainImage}
-            />
-          </div>
+          <Gallery
+            showThumbs
+            width="700px"
+            height="570px"
+            radius="4px"
+            images={galleryImages}
+          />
 
           <div className={styles.buyBoxPlaceholder}>
             <h1 className={styles.productTitle}>{product.name}</h1>
