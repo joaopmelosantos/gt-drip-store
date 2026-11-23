@@ -150,6 +150,12 @@
 }
 
 @media (max-width: 560px) {
+  .name,
+  .priceMain {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
   .buyButton {
     width: 100%;
   }

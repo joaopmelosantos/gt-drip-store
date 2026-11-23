@@ -240,6 +240,19 @@
 }
 
 @media (max-width: 960px) {
+  .pageContainer {
+    padding: 24px 20px 48px;
+  }
+
+  .pageTitle {
+    font-size: 24px;
+  }
+
+  .card,
+  .summaryCard {
+    padding: 24px 20px;
+  }
+
   .checkoutGrid {
     grid-template-columns: minmax(0, 1fr);
   }

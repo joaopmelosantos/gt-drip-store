@@ -93,7 +93,17 @@
 }
 
 @media (max-width: 560px) {
+  .container {
+    padding: 48px 20px 28px;
+  }
+
   .topGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 20px;
+  }
+
+  .brandColumn,
+  .infoColumn:last-child {
+    grid-column: 1 / -1;
   }
 }

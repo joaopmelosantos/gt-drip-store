@@ -207,6 +207,11 @@
 }
 
 @media (max-width: 960px) {
+  .pageContainer {
+    padding: 24px 20px 48px;
+    gap: 20px;
+  }
+
   .sortWrapper {
     width: 100%;
     min-width: 0;
@@ -214,5 +219,10 @@
 
   .contentGrid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .filterBox {
+    padding: 22px 20px;
   }
 }

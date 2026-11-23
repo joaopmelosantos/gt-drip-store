@@ -134,6 +134,7 @@ function CartPage() {
                     </div>
 
                     <div className={styles.quantityCol}>
+                      <span className={styles.mobileColLabel}>QUANTIDADE</span>
                       <div className={styles.qtyControls}>
                         <button
                           type="button"
@@ -163,20 +164,26 @@ function CartPage() {
                     </div>
 
                     <div className={styles.priceCol}>
-                      {item.oldPrice > item.price && (
-                        <span className={styles.oldPrice}>
-                          {formatMoney(item.oldPrice)}
+                      <span className={styles.mobileColLabel}>UNITÁRIO</span>
+                      <div className={styles.priceValues}>
+                        {item.oldPrice > item.price && (
+                          <span className={styles.oldPrice}>
+                            {formatMoney(item.oldPrice)}
+                          </span>
+                        )}
+                        <span className={styles.unitPrice}>
+                          {formatMoney(item.price)}
                         </span>
-                      )}
-                      <span className={styles.unitPrice}>
-                        {formatMoney(item.price)}
-                      </span>
+                      </div>
                     </div>
 
                     <div className={styles.priceCol}>
-                      <span className={styles.totalItemPrice}>
-                        {formatMoney(item.price * item.quantity)}
-                      </span>
+                      <span className={styles.mobileColLabel}>TOTAL</span>
+                      <div className={styles.priceValues}>
+                        <span className={styles.totalItemPrice}>
+                          {formatMoney(item.price * item.quantity)}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ))}

@@ -32,3 +32,21 @@
 .link:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 560px) {
+  .section {
+    padding: 28px 20px;
+  }
+
+  .header {
+    margin-bottom: 18px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+}

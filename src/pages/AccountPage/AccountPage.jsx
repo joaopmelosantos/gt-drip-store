@@ -162,7 +162,12 @@ function AccountPage({ initialTab = 'orders' }) {
                       </div>
                     </div>
 
-                    <span className={styles.orderStatus}>{order.status}</span>
+                    <div className={styles.orderStatusRow}>
+                      <span className={styles.mobileOrderStatusLabel}>
+                        STATUS
+                      </span>
+                      <span className={styles.orderStatus}>{order.status}</span>
+                    </div>
                   </div>
                 );
               })}

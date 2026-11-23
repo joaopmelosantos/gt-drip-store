@@ -126,3 +126,29 @@
   letter-spacing: 0.75px;
   color: var(--dark-gray);
 }
+
+@media (max-width: 560px) {
+  .imageBox {
+    padding: 14px;
+  }
+
+  .discountBadge {
+    top: 10px;
+    left: 10px;
+    font-size: 11px;
+    line-height: 18px;
+    padding: 3px 10px;
+  }
+
+  .name {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .priceOld,
+  .price,
+  .priceDiscount {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

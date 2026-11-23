@@ -194,7 +194,22 @@
   cursor: pointer;
 }
 
+.mobileColLabel {
+  display: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+  letter-spacing: 0.75px;
+}
+
 .priceCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.priceValues {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -328,8 +343,17 @@
 }
 
 @media (max-width: 960px) {
+  .pageContainer {
+    padding: 24px 20px;
+  }
+
   .cartGrid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cartCard,
+  .summaryCard {
+    padding: 24px 20px;
   }
 
   .tableHeader {
@@ -338,18 +362,63 @@
 
   .itemRow {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 16px;
+  }
+
+  .thumbBox {
+    width: 71px;
+    height: 58px;
+    padding: 6px;
+  }
+
+  .mobileColLabel {
+    display: inline-block;
   }
 
   .quantityCol {
-    align-items: flex-start;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .qtyControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .qtyButton {
+    flex: 1;
+    max-width: 96px;
+    height: 36px;
+  }
+
+  .removeButton {
+    align-self: center;
   }
 
   .priceCol {
-    align-items: flex-start;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .priceValues {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
   }
 
   .formsRow {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .inputRow {
+    flex-direction: column;
+  }
+
+  .okButton {
+    width: 100%;
   }
 }
