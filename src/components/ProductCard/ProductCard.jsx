@@ -1,23 +1,36 @@
 import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 
-// Formata número para moeda brasileira simples (ex.: 149.9 -> "R$ 149,90")
+// Formata número como no layout do Figma (ex.: $200 ou R$ 219)
 function formatPrice(value) {
-  return `R$ ${Number(value).toFixed(2).replace('.', ',')}`;
+  return `$${Number(value)}`;
 }
 
-function ProductCard({ id, name, image, imagem, category, price, priceDiscount }) {
+function ProductCard({
+  id,
+  name,
+  image,
+  imagem,
+  category,
+  price,
+  priceDiscount,
+  showDiscountBadge,
+  discountText,
+}) {
   const imageSrc = image || imagem;
   const hasDiscount = typeof priceDiscount === 'number' && priceDiscount < price;
   const discountPercent = hasDiscount
     ? Math.round(((price - priceDiscount) / price) * 100)
     : 0;
 
+  const badgeLabel =
+    discountText || (discountPercent > 0 ? `${discountPercent}% OFF` : '');
+
   const cardContent = (
     <article className={styles.card}>
       <div className={styles.imageBox}>
-        {hasDiscount && discountPercent > 0 && (
-          <span className={styles.discountBadge}>{discountPercent}% OFF</span>
+        {showDiscountBadge && badgeLabel && (
+          <span className={styles.discountBadge}>{badgeLabel}</span>
         )}
         <img src={imageSrc} alt={name} className={styles.image} />
       </div>

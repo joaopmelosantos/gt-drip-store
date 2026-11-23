@@ -1,18 +1,20 @@
 .buyBox {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .name {
   font-size: 32px;
   font-weight: 700;
   line-height: 36px;
+  letter-spacing: 1px;
   color: var(--dark-gray);
 }
 
 .reference {
   font-size: 12px;
+  font-weight: 500;
   color: var(--dark-gray-3);
 }
 
@@ -20,6 +22,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
+}
+
+.starsRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .starsBadge {
@@ -30,13 +39,13 @@
   color: var(--white);
   font-size: 14px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 4px;
 }
 
 .starIcon {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 }
 
 .ratingText {
@@ -47,13 +56,21 @@
 .priceRow {
   display: flex;
   align-items: baseline;
-  gap: 12px;
-  margin: 4px 0;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.currencyPrefix {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--dark-gray-2);
 }
 
 .priceMain {
   font-size: 32px;
   font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 1px;
   color: var(--dark-gray-2);
 }
 
@@ -61,6 +78,7 @@
   font-size: 16px;
   color: var(--light-gray-2);
   text-decoration: line-through;
+  margin-left: 6px;
 }
 
 .descriptionBlock {
@@ -78,6 +96,7 @@
 .description {
   font-size: 14px;
   line-height: 22px;
+  letter-spacing: 0.25px;
   color: var(--dark-gray-2);
 }
 
@@ -85,14 +104,14 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 .buyButton {
   width: 220px;
   height: 48px;
-  background-color: var(--warning);
-  color: var(--white);
+  background-color: #ffb31f;
+  color: var(--light-gray-3);
   border: none;
   border-radius: 8px;
   font-size: 16px;
@@ -100,11 +119,20 @@
   letter-spacing: 0.75px;
   cursor: pointer;
   margin-top: 8px;
-  transition: opacity 0.2s;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
 }
 
 .buyButton:hover {
-  opacity: 0.9;
+  background-color: var(--warning);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(246, 170, 28, 0.28);
+}
+
+.buyButton:active {
+  transform: scale(0.97);
 }
 
 @media (max-width: 560px) {

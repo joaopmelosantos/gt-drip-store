@@ -8,11 +8,11 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: transform 0.2s ease;
+  transition: transform 0.35s var(--ease-out-smooth);
 }
 
 .cardLink:hover .card {
-  transform: translateY(-2px);
+  transform: translateY(-6px);
 }
 
 .imageBox {
@@ -26,13 +26,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 28px;
+  transition: box-shadow 0.35s var(--ease-out-smooth);
+}
+
+.cardLink:hover .imageBox {
+  box-shadow: 8px 22px 36px 0px rgba(105, 98, 98, 0.1);
 }
 
 .discountBadge {
   position: absolute;
   top: 20px;
   left: 20px;
-  background-color: #e7ff86;
+  background-color: var(--badge-off-bg);
   color: var(--dark-gray-2);
   font-size: 14px;
   font-weight: 700;
@@ -44,10 +50,17 @@
 }
 
 .image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 92%;
+  height: auto;
+  max-height: 85%;
+  object-fit: contain;
+  transform: rotate(-28deg);
+  transition: transform 0.45s var(--ease-out-smooth);
   display: block;
+}
+
+.cardLink:hover .image {
+  transform: rotate(-22deg) scale(1.06);
 }
 
 .info {
@@ -70,6 +83,9 @@
   line-height: 30px;
   letter-spacing: 0.75px;
   color: var(--dark-gray-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .priceRow {
@@ -80,9 +96,9 @@
 }
 
 .priceOld {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
-  line-height: 32px;
+  line-height: 38px;
   letter-spacing: 0.75px;
   color: var(--light-gray);
   text-decoration: line-through;

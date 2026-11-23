@@ -82,6 +82,7 @@ function Header() {
             </Link>
             <div className={styles.cartWrapper}>
               <img src={miniCartIcon} alt="Carrinho de compras" />
+              <span className={styles.cartBadge}>2</span>
             </div>
           </div>
         </div>

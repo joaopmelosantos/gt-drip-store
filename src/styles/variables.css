@@ -1,4 +1,4 @@
-/* Variáveis globais de cores e fontes do projeto (baseadas no Figma e README) */
+/* Variáveis globais de cores, fontes e animações (baseadas no Figma) */
 :root {
   /* Cores principais */
   --primary: #c92071;
@@ -19,10 +19,19 @@
   --light-gray-3: #f5f5f5;
   --white: #ffffff;
 
+  /* Fundo de página do Figma */
+  --page-bg: #f9f8fe;
+  --collection-bg: #d8e3f2;
+  --badge-off-bg: #e7ff86;
+
   /* Gradientes (Figma) */
   --primary-gradient: linear-gradient(180deg, #c92071 0%, #edabca 100%);
   --secondary-gradient: linear-gradient(180deg, #b5b6f2 0%, #efefff 100%);
 
   /* Tipografia */
   --font-family: 'Inter', sans-serif;
+
+  /* Curvas de animação suave */
+  --ease-out-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring-soft: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
