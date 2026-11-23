@@ -8,6 +8,8 @@
 }
 
 .topBar {
+  position: relative;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,62 +27,117 @@
   font-weight: 700;
 }
 
-/* Seletor de ordenação estilizado */
+/* Seletor customizado de ordenação */
 .sortWrapper {
-  min-width: 320px;
-  height: 56px;
+  position: relative;
+  min-width: 312px;
+}
+
+.sortTrigger {
+  width: 100%;
+  height: 52px;
   background-color: var(--white);
   border: 1.5px solid var(--light-gray-2);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 0 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.sortWrapper:hover,
-.sortWrapper:focus-within {
+.sortTrigger:hover,
+.sortTriggerOpen {
   border-color: var(--primary);
-  box-shadow: 0 6px 20px rgba(201, 32, 113, 0.1);
+  box-shadow: 0 8px 22px rgba(201, 32, 113, 0.12);
+}
+
+.sortTextGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
 }
 
 .sortInlineLabel {
-  font-size: 14px;
   font-weight: 700;
   color: var(--dark-gray-2);
   white-space: nowrap;
 }
 
-.selectBox {
-  position: relative;
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-.sortSelect {
-  width: 100%;
-  appearance: none;
-  -webkit-appearance: none;
-  border: none;
-  background: transparent;
-  color: var(--dark-gray);
-  font-size: 15px;
+.sortCurrentValue {
   font-weight: 600;
-  padding-right: 26px;
-  outline: none;
-  cursor: pointer;
+  color: var(--dark-gray);
 }
 
 .selectChevron {
-  position: absolute;
-  right: 0;
-  pointer-events: none;
   color: var(--primary);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.sortMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background-color: var(--white);
+  border: 1px solid var(--light-gray-2);
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: 0 16px 36px rgba(31, 31, 31, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: sortMenuIn 0.18s ease-out;
+}
+
+@keyframes sortMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sortOption {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark-gray-2);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.sortOption:hover {
+  background-color: var(--light-gray-3);
+}
+
+.sortOptionActive {
+  background-color: rgba(201, 32, 113, 0.08);
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .contentGrid {
@@ -91,6 +148,8 @@
 }
 
 .sidebar {
+  position: relative;
+  z-index: 15;
   width: 100%;
 }
 

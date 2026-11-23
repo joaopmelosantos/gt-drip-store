@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Layout from '../Layout';
 import ProductListing from '../../components/ProductListing/ProductListing';
@@ -7,11 +7,20 @@ import Reveal from '../../components/Reveal/Reveal';
 import { getAllProducts, normalizeText } from '../../services/productService';
 import styles from './ProductListingPage.module.css';
 
+const SORT_OPTIONS = [
+  { value: '', label: 'Mais relevantes' },
+  { value: 'lowest', label: 'Menor preço' },
+  { value: 'highest', label: 'Maior preço' },
+  { value: 'rating', label: 'Melhor avaliação' },
+];
+
 function ProductListingPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('');
+  const [sortOpen, setSortOpen] = useState(false);
+  const sortRef = useRef(null);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedGenders, setSelectedGenders] = useState([]);
@@ -31,6 +40,27 @@ function ProductListingPage() {
     load();
     return () => {
       active = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleOutsideClick(event) {
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
+        setSortOpen(false);
+      }
+    }
+
+    function handleEscape(event) {
+      if (event.key === 'Escape') {
+        setSortOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, []);
 
@@ -138,10 +168,14 @@ function ProductListingPage() {
     selectedGenders.length > 0 ||
     selectedCondition !== '';
 
+  const currentSortLabel =
+    SORT_OPTIONS.find((item) => item.value === sortOrder)?.label ||
+    'Mais relevantes';
+
   return (
     <Layout>
       <div className={styles.pageContainer}>
-        {/* Linha superior: título à esquerda e Ordenar por estilizado à direita */}
+        {/* Linha superior: título à esquerda e Ordenar por customizado à direita */}
         <div className={styles.topBar}>
           <h1 className={styles.resultsTitle}>
             <strong>
@@ -152,24 +186,22 @@ function ProductListingPage() {
             </span>
           </h1>
 
-          <div className={styles.sortWrapper}>
-            <label htmlFor="sortSelect" className={styles.sortInlineLabel}>
-              Ordenar por:
-            </label>
-            <div className={styles.selectBox}>
-              <select
-                id="sortSelect"
-                className={styles.sortSelect}
-                value={sortOrder}
-                onChange={(event) => setSortOrder(event.target.value)}
-              >
-                <option value="">Mais relevantes</option>
-                <option value="lowest">Menor preço</option>
-                <option value="highest">Maior preço</option>
-                <option value="rating">Melhor avaliação</option>
-              </select>
+          <div className={styles.sortWrapper} ref={sortRef}>
+            <button
+              type="button"
+              className={`${styles.sortTrigger} ${sortOpen ? styles.sortTriggerOpen : ''}`}
+              onClick={() => setSortOpen((prev) => !prev)}
+              aria-haspopup="listbox"
+              aria-expanded={sortOpen}
+            >
+              <span className={styles.sortTextGroup}>
+                <span className={styles.sortInlineLabel}>Ordenar por:</span>
+                <span className={styles.sortCurrentValue}>
+                  {currentSortLabel}
+                </span>
+              </span>
               <svg
-                className={styles.selectChevron}
+                className={`${styles.selectChevron} ${sortOpen ? styles.chevronOpen : ''}`}
                 width="16"
                 height="16"
                 viewBox="0 0 24 24"
@@ -182,7 +214,45 @@ function ProductListingPage() {
               >
                 <polyline points="6 9 12 15 18 9" />
               </svg>
-            </div>
+            </button>
+
+            {sortOpen && (
+              <div className={styles.sortMenu} role="listbox">
+                {SORT_OPTIONS.map((option) => {
+                  const active = option.value === sortOrder;
+                  return (
+                    <button
+                      key={option.value || 'default'}
+                      type="button"
+                      role="option"
+                      aria-selected={active}
+                      className={`${styles.sortOption} ${active ? styles.sortOptionActive : ''}`}
+                      onClick={() => {
+                        setSortOrder(option.value);
+                        setSortOpen(false);
+                      }}
+                    >
+                      <span>{option.label}</span>
+                      {active && (
+                        <svg
+                          width="15"
+                          height="15"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
 
@@ -222,7 +292,8 @@ function ProductListingPage() {
                   {brandOptions.length > 0 && (
                     <FilterGroup
                       title="Marca"
-                      inputType="checkbox"
+                      inputType="select"
+                      placeholder="Digite ou selecione..."
                       options={brandOptions}
                       selectedValues={selectedBrands}
                       onChange={(val) =>
