@@ -1,5 +1,7 @@
 /* Transição de entrada suave inspirada no Framer Motion (curva expo desacelerada) */
 .reveal {
+  min-width: 0;
+  width: 100%;
   opacity: 0;
   transform: translateY(24px) scale(0.985);
   transition:

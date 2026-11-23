@@ -108,6 +108,7 @@
 
 .listArea {
   flex: 1;
+  min-width: 0;
 }
 
 @media (max-width: 960px) {
