@@ -2,6 +2,10 @@
 
 Aplicação web de e-commerce desenvolvida em **React + JavaScript + CSS Modules** como projeto final de Front-end do programa **Geração Tech / Digital College**, seguindo fielmente os requisitos da documentação oficial e os layouts Desktop (`1440px`) e Mobile (`375px`) do Figma.
 
+## Site no Ar (Deploy)
+
+- **Vercel:** https://gt-drip-store-lake.vercel.app/
+
 ## Integrante da Equipe
 
 - **João Paulo Melo dos Santos**
