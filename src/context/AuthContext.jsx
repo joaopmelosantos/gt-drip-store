@@ -89,6 +89,34 @@ export function AuthProvider({ children }) {
     return { ok: true, user: found };
   }
 
+  function loginSocialDemo(provider) {
+    const emailLower = `cliente.${provider.toLowerCase()}@dripstore.com`;
+    const users = readJson(USERS_KEY, []);
+    let account = users.find((item) => item.email.toLowerCase() === emailLower);
+
+    if (!account) {
+      account = {
+        id: Date.now(),
+        name: 'Francisco Antonio Pereira',
+        cpf: '123.485.913-35',
+        email: emailLower,
+        phone: '(85) 5555-5555',
+        address: 'Rua João Pessoa, 333',
+        neighborhood: 'Centro',
+        city: 'Fortaleza, Ceará',
+        cep: '43388-000',
+        complement: '',
+        password: 'social-login',
+        newsletter: true,
+      };
+      saveJson(USERS_KEY, [...users, account]);
+    }
+
+    saveJson(CURRENT_USER_KEY, account);
+    setUser(account);
+    return { ok: true, user: account };
+  }
+
   function logout() {
     localStorage.removeItem(CURRENT_USER_KEY);
     setUser(null);
@@ -131,6 +159,7 @@ export function AuthProvider({ children }) {
         lastOrder,
         registerUser,
         login,
+        loginSocialDemo,
         logout,
         updateProfile,
         createOrder,

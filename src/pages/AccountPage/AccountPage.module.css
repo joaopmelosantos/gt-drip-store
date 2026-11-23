@@ -6,8 +6,8 @@
 
 .accountGrid {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: 334px minmax(0, 1fr);
+  gap: 16px;
   align-items: start;
 }
 
@@ -21,18 +21,22 @@
 .sideNav {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-.sideTitle {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--dark-gray-2);
+  gap: 20px;
 }
 
 .sideLink {
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
   font-size: 14px;
+  font-weight: 500;
   color: var(--dark-gray-2);
+  cursor: pointer;
+}
+
+.sideLink:hover {
+  color: var(--primary);
 }
 
 .sideLinkActive {

@@ -128,14 +128,22 @@ function OrderSuccessPage() {
             </p>
           </div>
 
-          <div className={styles.actionsRow}>
-            <Link to="/orders" className={styles.ordersLink}>
-              Ver Meus Pedidos
-            </Link>
-            <Link to="/" className={styles.homeButton}>
-              Voltar para Home
-            </Link>
-          </div>
+          <button
+            type="button"
+            className={styles.receiptLink}
+            onClick={() => window.print()}
+          >
+            Imprimir Recibo
+          </button>
+        </div>
+
+        <div className={styles.outsideActions}>
+          <Link to="/" className={styles.homeButton}>
+            Voltar para Home
+          </Link>
+          <Link to="/orders" className={styles.ordersLink}>
+            Ver Meus Pedidos
+          </Link>
         </div>
       </div>
     </Layout>

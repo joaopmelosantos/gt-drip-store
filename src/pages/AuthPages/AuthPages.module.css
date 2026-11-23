@@ -22,7 +22,7 @@
 .gradientArea {
   flex: 1;
   background: var(--secondary-gradient);
-  padding: 64px 20px;
+  padding: 72px 20px 96px;
   display: flex;
   align-items: center;
 }
@@ -40,27 +40,40 @@
 .authCard {
   background-color: var(--white);
   border-radius: 4px;
-  padding: 36px 30px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
+}
+
+.cardTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
 .title {
   font-size: 32px;
+  line-height: 36px;
   font-weight: 700;
   color: var(--dark-gray);
 }
 
 .subtitle {
   font-size: 16px;
+  line-height: 28px;
   color: var(--dark-gray-2);
 }
 
 .inlineLink {
   text-decoration: underline;
+  color: var(--dark-gray-2);
+  font-weight: 400;
+}
+
+.inlineLink:hover {
   color: var(--primary);
-  font-weight: 600;
 }
 
 .field {
@@ -71,28 +84,53 @@
 
 .field label {
   font-size: 12px;
+  line-height: 24px;
   font-weight: 700;
   color: var(--dark-gray-2);
 }
 
 .field input {
-  height: 58px;
+  height: 60px;
   background-color: var(--light-gray-3);
   border: 1px solid transparent;
   border-radius: 8px;
-  padding: 0 16px;
+  padding: 0 18px;
   font-size: 16px;
   color: var(--dark-gray);
   outline: none;
+}
+
+.field input::placeholder {
+  color: var(--light-gray);
 }
 
 .field input:focus {
   border-color: var(--primary);
 }
 
+.forgotLink {
+  background: transparent;
+  border: none;
+  padding: 0;
+  align-self: flex-start;
+  font-size: 14px;
+  color: var(--dark-gray-2);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.forgotLink:hover {
+  color: var(--primary);
+}
+
 .errorText {
   font-size: 14px;
   color: var(--error);
+}
+
+.infoText {
+  font-size: 14px;
+  color: var(--success);
 }
 
 .primaryButton {
@@ -105,11 +143,42 @@
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .primaryButton:hover {
   background-color: var(--tertiary);
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--dark-gray-2);
+}
+
+.socialIcons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.socialButton {
+  background: transparent;
+  border: none;
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.socialButton:hover {
+  transform: translateY(-1px);
 }
 
 .showcaseVisual {
@@ -178,6 +247,7 @@
   align-items: flex-start;
   gap: 12px;
   font-size: 14px;
+  line-height: 22px;
   color: var(--dark-gray-2);
   cursor: pointer;
 }

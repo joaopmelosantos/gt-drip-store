@@ -12,7 +12,7 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { totalItems, isCartModalOpen, setIsCartModalOpen } = useCart();
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   // Executa a busca redirecionando para /products?filter=...
   function handleSearch(event) {
@@ -82,18 +82,23 @@ function Header() {
 
           <div className={styles.actions}>
             {user ? (
-              <>
-                <Link to="/profile" className={styles.userGreeting}>
-                  Olá, {firstName}
-                </Link>
-                <button
-                  type="button"
-                  className={styles.logoutButton}
-                  onClick={logout}
+              <Link to="/profile" className={styles.userGreeting}>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#C92071"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
                 >
-                  Sair
-                </button>
-              </>
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6" />
+                </svg>
+                <span>Olá {firstName}</span>
+              </Link>
             ) : (
               <>
                 <Link to="/register" className={styles.registerLink}>

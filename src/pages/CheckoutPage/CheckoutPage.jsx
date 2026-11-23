@@ -233,8 +233,10 @@ function CheckoutPage() {
               <h2 className={styles.cardTitle}>Informações de Pagamento</h2>
               <hr className={styles.divider} />
 
+              <p className={styles.paymentSubtitle}>Forma de Pagamento</p>
+
               <div className={styles.paymentRadios}>
-                {['Cartão de Crédito', 'Boleto Bancário', 'Pix'].map(
+                {['Cartão de Crédito', 'Boleto Bancário'].map(
                   (method) => (
                     <label key={method} className={styles.radioLabel}>
                       <input
@@ -255,11 +257,11 @@ function CheckoutPage() {
               {form.paymentMethod === 'Cartão de Crédito' && (
                 <div className={styles.fieldsList}>
                   <div className={styles.field}>
-                    <label htmlFor="chk-holder">Nome no Cartão *</label>
+                    <label htmlFor="chk-holder">Nome do Cartão *</label>
                     <input
                       id="chk-holder"
                       type="text"
-                      placeholder="Nome impresso no cartão"
+                      placeholder="Insira o nome do Cartão"
                       value={form.cardHolder}
                       onChange={(e) =>
                         handleChange('cardHolder', e.target.value)
@@ -273,7 +275,7 @@ function CheckoutPage() {
                       <input
                         id="chk-card"
                         type="text"
-                        placeholder="0000 0000 0000 0000"
+                        placeholder="Insira número do Cartão"
                         value={form.cardNumber}
                         onChange={(e) =>
                           handleChange('cardNumber', e.target.value)
@@ -282,11 +284,13 @@ function CheckoutPage() {
                     </div>
 
                     <div className={styles.field}>
-                      <label htmlFor="chk-expiry">Validade *</label>
+                      <label htmlFor="chk-expiry">
+                        Data de validade do Cartão *
+                      </label>
                       <input
                         id="chk-expiry"
                         type="text"
-                        placeholder="MM/AA"
+                        placeholder="Insira a validade do Cartão"
                         value={form.cardExpiry}
                         onChange={(e) =>
                           handleChange('cardExpiry', e.target.value)
@@ -295,15 +299,19 @@ function CheckoutPage() {
                     </div>
                   </div>
 
-                  <div className={styles.field}>
-                    <label htmlFor="chk-cvv">CVV *</label>
-                    <input
-                      id="chk-cvv"
-                      type="text"
-                      placeholder="123"
-                      value={form.cardCvv}
-                      onChange={(e) => handleChange('cardCvv', e.target.value)}
-                    />
+                  <div className={styles.twoCols}>
+                    <div className={styles.field}>
+                      <label htmlFor="chk-cvv">CVV *</label>
+                      <input
+                        id="chk-cvv"
+                        type="text"
+                        placeholder="CVV *"
+                        value={form.cardCvv}
+                        onChange={(e) =>
+                          handleChange('cardCvv', e.target.value)
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
               )}

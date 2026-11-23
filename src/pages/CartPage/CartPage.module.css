@@ -41,7 +41,7 @@
 .cartGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 334px;
-  gap: 24px;
+  gap: 16px;
   align-items: start;
 }
 
@@ -239,7 +239,7 @@
 
 .textInput {
   flex: 1;
-  height: 52px;
+  height: 60px;
   background-color: var(--light-gray-3);
   border: none;
   border-radius: 8px;
@@ -250,8 +250,8 @@
 }
 
 .okButton {
-  width: 96px;
-  height: 52px;
+  width: 114px;
+  height: 60px;
   background-color: var(--light-gray-3);
   color: var(--primary);
   border: none;

@@ -59,12 +59,16 @@ function CartModal() {
                 </div>
                 <div className={styles.itemInfo}>
                   <p className={styles.itemName}>{item.name}</p>
-                  <p className={styles.itemMeta}>
-                    Tam: {item.size} · Qtd: {item.quantity}
-                  </p>
-                  <p className={styles.itemPrice}>
-                    {formatMoney(item.price * item.quantity)}
-                  </p>
+                  <div className={styles.itemPriceRow}>
+                    <span className={styles.itemPrice}>
+                      {formatMoney(item.price * item.quantity)}
+                    </span>
+                    {item.oldPrice > item.price && (
+                      <span className={styles.itemOldPrice}>
+                        {formatMoney(item.oldPrice * item.quantity)}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}

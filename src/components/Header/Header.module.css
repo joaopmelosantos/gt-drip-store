@@ -115,6 +115,9 @@
 }
 
 .userGreeting {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 14px;
   font-weight: 700;
   color: var(--dark-gray-2);
@@ -122,21 +125,6 @@
 }
 
 .userGreeting:hover {
-  color: var(--primary);
-}
-
-.logoutButton {
-  background: transparent;
-  border: 1px solid var(--light-gray-2);
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 13px;
-  color: var(--dark-gray-2);
-  cursor: pointer;
-}
-
-.logoutButton:hover {
-  border-color: var(--primary);
   color: var(--primary);
 }
 
