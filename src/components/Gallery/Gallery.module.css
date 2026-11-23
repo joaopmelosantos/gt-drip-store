@@ -37,10 +37,10 @@
 
 .slideImageContained {
   width: 72%;
-  max-height: 75%;
+  height: 62%;
   object-fit: contain;
   display: block;
-  transition: transform 0.4s var(--ease-out-smooth);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Estilos do Hero Banner (Figma Home) */
@@ -145,8 +145,8 @@
 
 .heroImage {
   width: 100%;
-  max-width: 620px;
-  height: auto;
+  max-width: 580px;
+  height: 360px;
   object-fit: contain;
   transform: rotate(-19deg);
   filter: drop-shadow(0 28px 34px rgba(0, 0, 0, 0.14));
@@ -279,8 +279,8 @@
 }
 
 .thumbImageContained {
-  width: 90%;
-  height: 90%;
+  width: 82%;
+  height: 70%;
   object-fit: contain;
   display: block;
 }
@@ -309,6 +309,7 @@
 
   .heroImage {
     max-width: 320px;
+    height: 200px;
   }
 
   .heroOrnament {

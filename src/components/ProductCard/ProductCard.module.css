@@ -50,12 +50,12 @@
 }
 
 .image {
-  width: 92%;
-  height: auto;
-  max-height: 85%;
+  width: 82%;
+  height: 62%;
   object-fit: contain;
+  object-position: center;
   transform: rotate(-28deg);
-  transition: transform 0.45s var(--ease-out-smooth);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
 }
 

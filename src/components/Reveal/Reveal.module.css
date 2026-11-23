@@ -1,12 +1,14 @@
+/* Transição de entrada suave inspirada no Framer Motion (curva expo desacelerada) */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(24px) scale(0.985);
   transition:
-    opacity 0.6s var(--ease-out-smooth),
-    transform 0.6s var(--ease-out-smooth);
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
