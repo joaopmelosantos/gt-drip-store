@@ -52,8 +52,8 @@ function ProductViewPage() {
           (sameCategory.length > 0
             ? sameCategory
             : allProducts.filter(
-                (item) => String(item.id) !== String(foundProduct.id)
-              )
+              (item) => String(item.id) !== String(foundProduct.id)
+            )
           ).slice(0, 4)
         );
       }
