@@ -166,7 +166,7 @@
 .offerImage {
   position: absolute;
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   height: auto;
   object-fit: contain;
   transition: transform 0.5s var(--ease-out-smooth);
