@@ -1,0 +1,99 @@
+.footer {
+  background-color: var(--dark-gray);
+  color: var(--white);
+  width: 100%;
+  margin-top: auto;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 64px 20px 32px;
+}
+
+.topGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 26px;
+  max-width: 307px;
+  color: var(--white);
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.socialLinks img {
+  height: 20px;
+  display: block;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.infoList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.infoLink {
+  font-size: 16px;
+  color: var(--white);
+}
+
+.infoLink:hover {
+  text-decoration: underline;
+}
+
+.contactText {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 24px;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 13px;
+  color: var(--white);
+}
+
+@media (max-width: 900px) {
+  .topGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .topGrid {
+    grid-template-columns: 1fr;
+  }
+}

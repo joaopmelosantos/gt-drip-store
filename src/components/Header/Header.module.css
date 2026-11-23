@@ -1,0 +1,116 @@
+.header {
+  background-color: var(--white);
+  width: 100%;
+  border-bottom: 1px solid var(--light-gray-3);
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 34px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.searchForm {
+  flex: 1;
+  min-width: 240px;
+  max-width: 559px;
+  height: 60px;
+  background-color: var(--light-gray-3);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+  color: var(--dark-gray-2);
+}
+
+.searchInput::placeholder {
+  color: var(--light-gray);
+}
+
+.searchButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.registerLink {
+  font-size: 16px;
+  color: var(--dark-gray-2);
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.loginButton {
+  width: 114px;
+  height: 40px;
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.loginButton:hover {
+  background-color: var(--tertiary);
+}
+
+.cartWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  font-size: 16px;
+  color: var(--dark-gray-2);
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.navLinkActive {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom-color: var(--primary);
+}
