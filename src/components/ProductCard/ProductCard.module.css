@@ -55,15 +55,23 @@
 
 .image {
   width: 82%;
-  height: 62%;
+  height: 74%;
   object-fit: contain;
   object-position: center;
-  transform: rotate(-28deg);
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
 }
 
+.tiltedShoe {
+  height: 62%;
+  transform: rotate(-28deg);
+}
+
 .cardLink:hover .image {
+  transform: scale(1.06);
+}
+
+.cardLink:hover .tiltedShoe {
   transform: rotate(-22deg) scale(1.06);
 }
 

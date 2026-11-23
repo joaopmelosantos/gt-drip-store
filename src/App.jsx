@@ -3,6 +3,7 @@ import SmoothScroll from './utils/SmoothScroll';
 import HomePage from './pages/HomePage/HomePage';
 import ProductListingPage from './pages/ProductListingPage/ProductListingPage';
 import ProductViewPage from './pages/ProductViewPage/ProductViewPage';
+import CategoriesPage from './pages/CategoriesPage/CategoriesPage';
 
 function App() {
   return (
@@ -14,8 +15,7 @@ function App() {
         {/* Redireciona /produtos (citado em parte do README base) para /products */}
         <Route path="/produtos" element={<Navigate to="/products" replace />} />
         <Route path="/product/:id" element={<ProductViewPage />} />
-        {/* Rotas secundárias apontando para páginas de estudo enquanto não forem criadas */}
-        <Route path="/categories" element={<ProductListingPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/orders" element={<ProductListingPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

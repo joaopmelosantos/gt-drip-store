@@ -1,0 +1,9 @@
+<svg width="240" height="180" viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="146" rx="78" ry="12" fill="#E5E7EB"/>
+  <path d="M52 102C52 63.3401 82.4446 32 120 32C157.555 32 188 63.3401 188 102V114H52V102Z" fill="#F5F5F5" stroke="#CCCCCC" stroke-width="2"/>
+  <path d="M120 32C102 48 96 76 96 114" stroke="#CCCCCC" stroke-width="2"/>
+  <path d="M120 32C138 48 144 76 144 114" stroke="#CCCCCC" stroke-width="2"/>
+  <path d="M44 112H196C207.046 112 216 120.954 216 132C216 135.314 213.314 138 210 138H44V112Z" fill="#1F1F1F"/>
+  <circle cx="120" cy="28" r="5" fill="#1F1F1F"/>
+  <text x="120" y="86" text-anchor="middle" fill="#1F1F1F" font-family="Inter, sans-serif" font-weight="700" font-size="14">DRIP</text>
+</svg>

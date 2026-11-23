@@ -1,23 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Layout from '../Layout';
 import ProductListing from '../../components/ProductListing/ProductListing';
 import FilterGroup from '../../components/FilterGroup/FilterGroup';
 import Reveal from '../../components/Reveal/Reveal';
-import { products } from '../../data/products';
+import { getAllProducts, normalizeText } from '../../services/productService';
 import styles from './ProductListingPage.module.css';
 
 function ProductListingPage() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [allProducts, setAllProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('');
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedGenders, setSelectedGenders] = useState([]);
   const [selectedCondition, setSelectedCondition] = useState('');
 
-  // Lê o termo ?filter=... enviado pela busca do Header
+  useEffect(() => {
+    let active = true;
+
+    async function load() {
+      const list = await getAllProducts();
+      if (active) {
+        setAllProducts(list);
+        setLoading(false);
+      }
+    }
+
+    load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Lê o termo ?filter=... enviado pela busca do Header ou links de categoria
   const rawFilter = searchParams.get('filter') || '';
-  const searchFilter = rawFilter.toLowerCase();
+  const searchFilter = normalizeText(rawFilter);
 
   function toggleSelection(value, currentList, setList) {
     if (currentList.includes(value)) {
@@ -32,23 +51,25 @@ function ProductListingPage() {
     setSelectedCategories([]);
     setSelectedGenders([]);
     setSelectedCondition('');
+    if (rawFilter) {
+      setSearchParams({});
+    }
   }
 
-  let filteredProducts = products.filter((product) => {
+  let filteredProducts = allProducts.filter((product) => {
     const matchesSearch =
       !searchFilter ||
-      product.name.toLowerCase().includes(searchFilter) ||
-      product.category.toLowerCase().includes(searchFilter) ||
-      product.brand.toLowerCase().includes(searchFilter);
+      normalizeText(product.name).includes(searchFilter) ||
+      normalizeText(product.category).includes(searchFilter) ||
+      normalizeText(product.brand).includes(searchFilter) ||
+      normalizeText(product.reference).includes(searchFilter);
 
     const matchesBrand =
       selectedBrands.length === 0 || selectedBrands.includes(product.brand);
 
     const matchesCategory =
       selectedCategories.length === 0 ||
-      selectedCategories.some((cat) =>
-        product.reference.toLowerCase().includes(cat.toLowerCase())
-      );
+      selectedCategories.includes(product.category);
 
     const matchesGender =
       selectedGenders.length === 0 ||
@@ -74,21 +95,28 @@ function ProductListingPage() {
     filteredProducts = [...filteredProducts].sort(
       (a, b) => (b.priceDiscount || b.price) - (a.priceDiscount || a.price)
     );
+  } else if (sortOrder === 'rating') {
+    filteredProducts = [...filteredProducts].sort(
+      (a, b) => (b.stars || 0) - (a.stars || 0)
+    );
   }
 
-  const brandOptions = [
-    { text: 'Adidas', value: 'Adidas' },
-    { text: 'Balenciaga', value: 'Balenciaga' },
-    { text: 'K-Swiss', value: 'K-Swiss' },
-    { text: 'Nike', value: 'Nike' },
-    { text: 'Puma', value: 'Puma' },
-  ];
+  // Gera lista de marcas únicas presentes nos produtos carregados
+  const uniqueBrands = Array.from(
+    new Set(allProducts.map((item) => item.brand).filter(Boolean))
+  ).sort((a, b) => a.localeCompare(b));
+
+  const brandOptions = uniqueBrands.map((brand) => ({
+    text: brand,
+    value: brand,
+  }));
 
   const categoryOptions = [
-    { text: 'Esporte e lazer', value: 'Esporte e lazer' },
-    { text: 'Casual', value: 'Casual' },
-    { text: 'Utilitário', value: 'Utilitário' },
-    { text: 'Corrida', value: 'Corrida' },
+    { text: 'Tênis', value: 'Tênis' },
+    { text: 'Camisetas', value: 'Camisetas' },
+    { text: 'Calças', value: 'Calças' },
+    { text: 'Bonés', value: 'Bonés' },
+    { text: 'Headphones', value: 'Headphones' },
   ];
 
   const genderOptions = [
@@ -104,6 +132,7 @@ function ProductListingPage() {
   ];
 
   const hasActiveFilters =
+    Boolean(rawFilter) ||
     selectedBrands.length > 0 ||
     selectedCategories.length > 0 ||
     selectedGenders.length > 0 ||
@@ -112,29 +141,48 @@ function ProductListingPage() {
   return (
     <Layout>
       <div className={styles.pageContainer}>
-        {/* Linha superior idêntica ao Figma: título à esquerda e Ordenar por à direita */}
+        {/* Linha superior: título à esquerda e Ordenar por estilizado à direita */}
         <div className={styles.topBar}>
           <h1 className={styles.resultsTitle}>
             <strong>
               Resultados{rawFilter ? ` para "${rawFilter}"` : ''}
             </strong>{' '}
-            <span>- {filteredProducts.length} produto(s)</span>
+            <span>
+              - {loading ? 'carregando...' : `${filteredProducts.length} produto(s)`}
+            </span>
           </h1>
 
           <div className={styles.sortWrapper}>
             <label htmlFor="sortSelect" className={styles.sortInlineLabel}>
               Ordenar por:
             </label>
-            <select
-              id="sortSelect"
-              className={styles.sortSelect}
-              value={sortOrder}
-              onChange={(event) => setSortOrder(event.target.value)}
-            >
-              <option value="">mais relevantes</option>
-              <option value="lowest">menor preço</option>
-              <option value="highest">maior preço</option>
-            </select>
+            <div className={styles.selectBox}>
+              <select
+                id="sortSelect"
+                className={styles.sortSelect}
+                value={sortOrder}
+                onChange={(event) => setSortOrder(event.target.value)}
+              >
+                <option value="">Mais relevantes</option>
+                <option value="lowest">Menor preço</option>
+                <option value="highest">Maior preço</option>
+                <option value="rating">Melhor avaliação</option>
+              </select>
+              <svg
+                className={styles.selectChevron}
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -158,16 +206,6 @@ function ProductListingPage() {
 
                 <div className={styles.filterGroups}>
                   <FilterGroup
-                    title="Marca"
-                    inputType="checkbox"
-                    options={brandOptions}
-                    selectedValues={selectedBrands}
-                    onChange={(val) =>
-                      toggleSelection(val, selectedBrands, setSelectedBrands)
-                    }
-                  />
-
-                  <FilterGroup
                     title="Categoria"
                     inputType="checkbox"
                     options={categoryOptions}
@@ -180,6 +218,18 @@ function ProductListingPage() {
                       )
                     }
                   />
+
+                  {brandOptions.length > 0 && (
+                    <FilterGroup
+                      title="Marca"
+                      inputType="checkbox"
+                      options={brandOptions}
+                      selectedValues={selectedBrands}
+                      onChange={(val) =>
+                        toggleSelection(val, selectedBrands, setSelectedBrands)
+                      }
+                    />
+                  )}
 
                   <FilterGroup
                     title="Gênero"
@@ -205,7 +255,11 @@ function ProductListingPage() {
           </aside>
 
           <div className={styles.listArea}>
-            <ProductListing products={filteredProducts} columns={3} />
+            {loading ? (
+              <p className={styles.loadingText}>Carregando produtos...</p>
+            ) : (
+              <ProductListing products={filteredProducts} columns={3} />
+            )}
           </div>
         </div>
       </div>

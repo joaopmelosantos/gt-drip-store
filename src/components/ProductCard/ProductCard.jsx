@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 
-// Formata número como no layout do Figma (ex.: $200 ou R$ 219)
+// Formata número como no layout do Figma (ex.: $200)
 function formatPrice(value) {
   return `$${Number(value)}`;
 }
@@ -26,13 +26,25 @@ function ProductCard({
   const badgeLabel =
     discountText || (discountPercent > 0 ? `${discountPercent}% OFF` : '');
 
+  // Apenas os tênis recortados locais (/figma/*.png) recebem inclinação de -28deg como no Figma
+  const isLocalCutoutShoe =
+    typeof imageSrc === 'string' &&
+    imageSrc.startsWith('/figma/') &&
+    imageSrc.endsWith('.png');
+
   const cardContent = (
     <article className={styles.card}>
       <div className={styles.imageBox}>
         {showDiscountBadge && badgeLabel && (
           <span className={styles.discountBadge}>{badgeLabel}</span>
         )}
-        <img src={imageSrc} alt={name} className={styles.image} />
+        <img
+          src={imageSrc}
+          alt={name}
+          className={`${styles.image} ${
+            isLocalCutoutShoe ? styles.tiltedShoe : ''
+          }`}
+        />
       </div>
 
       <div className={styles.info}>

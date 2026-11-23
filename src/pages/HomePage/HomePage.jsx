@@ -62,7 +62,7 @@ function HomePage() {
       image: '/collection-1.png',
       alt: 'Novo drop Supreme',
       discount: '30% OFF',
-      href: '/products',
+      href: '/products?filter=Camisetas',
     },
     {
       id: 2,
@@ -76,7 +76,7 @@ function HomePage() {
       image: '/collection-3.png',
       alt: 'Novo Beats Bass',
       discount: '30% OFF',
-      href: '/products',
+      href: '/products?filter=Beats',
     },
   ];
 

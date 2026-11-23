@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Layout from '../Layout';
 import Section from '../../components/Section/Section';
@@ -6,25 +7,50 @@ import Gallery from '../../components/Gallery/Gallery';
 import BuyBox from '../../components/BuyBox/BuyBox';
 import ProductOptions from '../../components/ProductOptions/ProductOptions';
 import Reveal from '../../components/Reveal/Reveal';
-import { products } from '../../data/products';
+import { products as fallbackProducts } from '../../data/products';
+import { getAllProducts, getProductById } from '../../services/productService';
 import styles from './ProductViewPage.module.css';
 
 function ProductViewPage() {
   const { id } = useParams();
+  const [product, setProduct] = useState(
+    () =>
+      fallbackProducts.find((item) => String(item.id) === String(id)) ||
+      fallbackProducts[0]
+  );
+  const [recommendedProducts, setRecommendedProducts] = useState(
+    fallbackProducts.slice(1, 5)
+  );
 
-  // Busca simples do produto pelo id da URL; se não encontrar, usa o primeiro
-  const product =
-    products.find((item) => item.id === Number(id)) || products[0];
+  useEffect(() => {
+    let active = true;
+
+    async function load() {
+      const [foundProduct, allProducts] = await Promise.all([
+        getProductById(id),
+        getAllProducts(),
+      ]);
+
+      if (active) {
+        setProduct(foundProduct);
+        setRecommendedProducts(
+          allProducts
+            .filter((item) => String(item.id) !== String(foundProduct.id))
+            .slice(0, 4)
+        );
+      }
+    }
+
+    load();
+    return () => {
+      active = false;
+    };
+  }, [id]);
 
   const galleryImages =
     product.images && product.images.length > 0
       ? product.images
       : [{ src: product.image, bg: '#E2E3FF' }];
-
-  // Seleciona até 4 outros produtos para exibir em "Produtos Relacionados"
-  const recommendedProducts = products
-    .filter((item) => item.id !== product.id)
-    .slice(0, 4);
 
   return (
     <Layout>
@@ -37,7 +63,9 @@ function ProductViewPage() {
           <span>/</span>
           <Link to="/products">Produtos</Link>
           <span>/</span>
-          <span>{product.category}</span>
+          <Link to={`/products?filter=${encodeURIComponent(product.category)}`}>
+            {product.category}
+          </Link>
           <span>/</span>
           <span>{product.brand}</span>
           <span>/</span>
