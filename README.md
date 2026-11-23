@@ -25,6 +25,7 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica�
 ├── src/
 │   ├── assets/           # Ícones e logomarcas em SVG
 │   ├── components/       # Componentes reutilizáveis (com CSS Modules)
+│   │   ├── FilterGroup/
 │   │   ├── Footer/
 │   │   ├── Gallery/
 │   │   ├── Header/
@@ -52,6 +53,6 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica�
 - [x] Componentes de layout base (`Logo`, `Header`, `Footer`, `Layout`, `Section`)
 - [x] Extrair e evoluir `<ProductCard />` e `<ProductListing />` (`src/components/`)
 - [x] Implementar o carrossel `<Gallery />` com setas e `showThumbs`
-- [ ] Implementar `<FilterGroup />` (checkbox e radio) na `ProductListingPage`
+- [x] Implementar `<FilterGroup />` (checkbox e radio) na `ProductListingPage`
 - [ ] Implementar `<ProductOptions />` e `<BuyBox />` completos na `ProductViewPage`
 - [ ] Ajustes de responsividade mobile (frames de 375px do Figma)
