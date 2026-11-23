@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import SmoothScroll from './utils/SmoothScroll';
 import HomePage from './pages/HomePage/HomePage';
 import ProductListingPage from './pages/ProductListingPage/ProductListingPage';
 import ProductViewPage from './pages/ProductViewPage/ProductViewPage';
@@ -6,6 +7,7 @@ import ProductViewPage from './pages/ProductViewPage/ProductViewPage';
 function App() {
   return (
     <BrowserRouter>
+      <SmoothScroll />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductListingPage />} />

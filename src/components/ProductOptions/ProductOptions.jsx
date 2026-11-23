@@ -10,6 +10,7 @@ function ProductOptions({
   type = 'text',
   onSelect,
 }) {
+  // No Figma, o tamanho selecionado inicial costuma destacar uma opção do meio ou a primeira
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Reinicia seleção ao trocar de produto/opções

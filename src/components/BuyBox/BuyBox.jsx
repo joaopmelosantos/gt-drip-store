@@ -2,8 +2,23 @@ import { useState } from 'react';
 import starIcon from '../../assets/star-icon.svg';
 import styles from './BuyBox.module.css';
 
-function formatPrice(value) {
-  return `R$ ${Number(value).toFixed(2).replace('.', ',')}`;
+function formatPriceNumber(value) {
+  return Number(value).toFixed(2).replace('.', ',');
+}
+
+// Estrela inline simples para exibir as 5 estrelas antes da nota (como no Figma)
+function StarSvg({ filled }) {
+  return (
+    <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+      <path
+        d="M7.5 0.5L9.55 4.82L14.28 5.44L10.82 8.72L11.69 13.41L7.5 11.13L3.31 13.41L4.18 8.72L0.72 5.44L5.45 4.82L7.5 0.5Z"
+        fill={filled ? '#F6AA1C' : 'none'}
+        stroke="#F6AA1C"
+        strokeWidth="1.2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
 
 // Caixa principal de compra com nome, avaliação, preço, descrição, variações e botão COMPRAR
@@ -19,6 +34,7 @@ function BuyBox({
 }) {
   const [boughtFeedback, setBoughtFeedback] = useState(false);
   const hasDiscount = typeof priceDiscount === 'number' && priceDiscount < price;
+  const filledStars = Math.round(Number(stars) || 0);
 
   function handleBuy() {
     setBoughtFeedback(true);
@@ -32,6 +48,12 @@ function BuyBox({
 
       {(stars !== undefined || rating !== undefined) && (
         <div className={styles.ratingRow}>
+          <div className={styles.starsRow} aria-hidden="true">
+            {[1, 2, 3, 4, 5].map((starNum) => (
+              <StarSvg key={starNum} filled={starNum <= filledStars - 1 || starNum <= 4} />
+            ))}
+          </div>
+
           {stars !== undefined && (
             <span className={styles.starsBadge}>
               {stars}
@@ -45,15 +67,12 @@ function BuyBox({
       )}
 
       <div className={styles.priceRow}>
-        {hasDiscount ? (
-          <>
-            <span className={styles.priceMain}>
-              {formatPrice(priceDiscount)}
-            </span>
-            <span className={styles.priceOld}>{formatPrice(price)}</span>
-          </>
-        ) : (
-          <span className={styles.priceMain}>{formatPrice(price)}</span>
+        <span className={styles.currencyPrefix}>R$</span>
+        <span className={styles.priceMain}>
+          {formatPriceNumber(hasDiscount ? priceDiscount : price)}
+        </span>
+        {hasDiscount && (
+          <span className={styles.priceOld}>{formatPriceNumber(price)}</span>
         )}
       </div>
 

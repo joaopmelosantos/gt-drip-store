@@ -85,24 +85,47 @@
   height: 40px;
   background-color: var(--primary);
   color: var(--white);
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s var(--ease-out-smooth), transform 0.15s ease;
 }
 
 .loginButton:hover {
   background-color: var(--tertiary);
 }
 
+.loginButton:active {
+  transform: scale(0.97);
+}
+
 .cartWrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 8px;
+  cursor: pointer;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background-color: var(--error);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .nav {

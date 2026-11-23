@@ -1,17 +1,257 @@
+.heroFullWidth {
+  width: 100%;
+  background-color: var(--light-gray-3);
+}
+
+/* 3 Cards de coleções em destaque */
 .collectionsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
+.collectionCard {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--collection-bg);
+  height: 251px;
+  transition:
+    transform 0.35s var(--ease-out-smooth),
+    box-shadow 0.35s var(--ease-out-smooth);
+}
+
+.collectionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(31, 31, 31, 0.08);
+}
+
 .collectionImage {
   width: 100%;
-  border-radius: 4px;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-@media (max-width: 640px) {
+.collectionBadge {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  background-color: var(--badge-off-bg);
+  color: var(--dark-gray-2);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.75px;
+  padding: 5px 15px;
+  border-radius: 29px;
+}
+
+.collectionButton {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  width: 153px;
+  height: 48px;
+  background-color: var(--light-gray-3);
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.75px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.collectionButton:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+/* Faixa de 5 categorias circulares */
+.categoriesRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.categoryCircle {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s var(--ease-spring-soft),
+    box-shadow 0.3s var(--ease-out-smooth);
+}
+
+.categoryItem:hover .categoryCircle {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(201, 32, 113, 0.12);
+}
+
+.categoryCircleActive {
+  box-shadow: 0 4px 25px rgba(201, 32, 113, 0.14);
+}
+
+.categoryIcon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* Os SVGs exportados do Figma vieram invertidos verticalmente */
+.flipIcon {
+  transform: scaleY(-1);
+}
+
+.categoryLabel {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.75px;
+  color: var(--dark-gray-2);
+}
+
+/* Seção Oferta Especial (Air Jordan) */
+.specialOfferSection {
+  background-color: var(--white);
+  width: 100%;
+  margin-top: 40px;
+}
+
+.specialOfferInner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.specialOfferVisual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 466px;
+}
+
+.offerEllipse {
+  width: 466px;
+  height: 466px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.offerImage {
+  position: absolute;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.5s var(--ease-out-smooth);
+}
+
+.specialOfferSection:hover .offerImage {
+  transform: scale(1.03) translateY(-4px);
+}
+
+.specialOfferContent {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 589px;
+}
+
+.offerEyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.75px;
+  color: var(--primary);
+}
+
+.offerTitle {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: 1px;
+  color: var(--dark-gray-2);
+}
+
+.offerDescription {
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.75px;
+  color: var(--dark-gray-2);
+}
+
+.offerButton {
+  width: 200px;
+  height: 40px;
+  background-color: var(--primary);
+  color: var(--light-gray-3);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.75px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+.offerButton:hover {
+  background-color: var(--tertiary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201, 32, 113, 0.25);
+}
+
+@media (max-width: 960px) {
   .collectionsGrid {
     grid-template-columns: 1fr;
+  }
+
+  .specialOfferInner {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+  }
+
+  .specialOfferVisual {
+    min-height: 300px;
+  }
+
+  .offerEllipse {
+    width: 280px;
+    height: 280px;
+  }
+
+  .offerTitle {
+    font-size: 32px;
+    line-height: 36px;
   }
 }

@@ -1,4 +1,5 @@
 import ProductCard from '../ProductCard/ProductCard';
+import Reveal from '../Reveal/Reveal';
 import styles from './ProductListing.module.css';
 
 // Encapsula e renderiza uma lista de <ProductCard /> a partir do array products
@@ -17,15 +18,21 @@ function ProductListing({ products = [], columns = 4 }) {
   return (
     <div className={gridClass}>
       {products.map((product, index) => (
-        <ProductCard
+        <Reveal
           key={product.id || `${product.name}-${index}`}
-          id={product.id}
-          name={product.name}
-          image={product.image}
-          category={product.category}
-          price={product.price}
-          priceDiscount={product.priceDiscount}
-        />
+          delay={Math.min(index * 45, 320)}
+        >
+          <ProductCard
+            id={product.id}
+            name={product.name}
+            image={product.image}
+            category={product.category}
+            price={product.price}
+            priceDiscount={product.priceDiscount}
+            showDiscountBadge={product.showDiscountBadge}
+            discountText={product.discountText}
+          />
+        </Reveal>
       ))}
     </div>
   );

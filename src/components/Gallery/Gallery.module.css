@@ -10,19 +10,22 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: var(--white);
+  background-color: var(--light-gray-3);
 }
 
 .track {
   display: flex;
   width: 100%;
   height: 100%;
-  transition: transform 0.35s ease;
+  transition: transform 0.55s var(--ease-out-smooth);
 }
 
 .slide {
   min-width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slideImage {
@@ -32,6 +35,146 @@
   display: block;
 }
 
+.slideImageContained {
+  width: 72%;
+  max-height: 75%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.4s var(--ease-out-smooth);
+}
+
+/* Estilos do Hero Banner (Figma Home) */
+.heroSlide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.heroInner {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 510px;
+  z-index: 1;
+  animation: heroTextIn 0.7s var(--ease-out-smooth) both;
+}
+
+.heroEyebrow {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  color: var(--warning);
+}
+
+.heroTitle {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 66px;
+  letter-spacing: 1px;
+  color: var(--dark-gray);
+}
+
+.heroDescription {
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.75px;
+  color: var(--dark-gray-2);
+  max-width: 495px;
+}
+
+.heroButton {
+  width: 220px;
+  height: 48px;
+  background-color: var(--primary);
+  color: var(--light-gray-3);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.75px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  transition:
+    background-color 0.2s var(--ease-out-smooth),
+    transform 0.2s var(--ease-out-smooth),
+    box-shadow 0.25s var(--ease-out-smooth);
+}
+
+.heroButton:hover {
+  background-color: var(--tertiary);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(201, 32, 113, 0.25);
+}
+
+.heroButton:active {
+  transform: scale(0.97);
+}
+
+.heroVisual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+.heroOrnament {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.heroImage {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  object-fit: contain;
+  transform: rotate(-19deg);
+  filter: drop-shadow(0 28px 34px rgba(0, 0, 0, 0.14));
+  animation: floatShoe 5s ease-in-out infinite;
+}
+
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatShoe {
+  0%,
+  100% {
+    transform: rotate(-19deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-18deg) translateY(-10px);
+  }
+}
+
+/* Setas laterais */
 .arrowButton {
   position: absolute;
   top: 50%;
@@ -40,21 +183,21 @@
   height: 40px;
   border: none;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: opacity 0.2s, background-color 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .arrowButton:hover:not(:disabled) {
-  background-color: var(--white);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .arrowButton:disabled {
-  opacity: 0.35;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
@@ -66,22 +209,62 @@
   right: 16px;
 }
 
+/* Pontos indicadores do Hero (Figma) */
+.dotsRow {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--light-gray-2);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s var(--ease-spring-soft);
+}
+
+.dotActive {
+  background-color: var(--primary);
+  transform: scale(1.15);
+}
+
+/* Miniaturas */
 .thumbsRow {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
 }
 
 .thumbButton {
   width: 117px;
-  height: 95px;
-  padding: 0;
+  height: 96px;
+  padding: 12px;
   border: 2px solid transparent;
   background-color: var(--white);
   overflow: hidden;
   cursor: pointer;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.thumbButton:hover {
+  transform: translateY(-2px);
 }
 
 .thumbSelected {
@@ -95,13 +278,49 @@
   display: block;
 }
 
-@media (max-width: 768px) {
+.thumbImageContained {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 900px) {
   .viewport {
-    max-height: 360px;
+    height: auto !important;
+    min-height: 360px;
+  }
+
+  .heroInner {
+    grid-template-columns: 1fr;
+    padding: 32px 20px 64px;
+    text-align: left;
+  }
+
+  .heroTitle {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .heroVisual {
+    order: -1;
+    min-height: 220px;
+  }
+
+  .heroImage {
+    max-width: 320px;
+  }
+
+  .heroOrnament {
+    width: 90px;
+    height: 90px;
+    top: 0;
+    right: 0;
   }
 
   .thumbButton {
-    width: 76px;
-    height: 64px;
+    width: 64px;
+    height: 54px;
+    padding: 6px;
   }
 }

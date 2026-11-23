@@ -34,6 +34,7 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica�
 │   │   ├── ProductCard/
 │   │   ├── ProductListing/
 │   │   ├── ProductOptions/
+│   │   ├── Reveal/
 │   │   └── Section/
 │   ├── data/             # Dados simples em JavaScript para estudo (products.js)
 │   ├── pages/            # Páginas principais e Layout compartilhado
@@ -42,6 +43,7 @@ Projeto de estudo em **React + JavaScript + CSS Modules** baseado na especifica�
 │   │   ├── ProductViewPage/
 │   │   └── Layout.jsx
 │   ├── styles/           # Variáveis globais de cores e fontes (variables.css)
+│   ├── utils/            # Utilitários simples (SmoothScroll.jsx)
 │   ├── App.jsx           # Definição das rotas com react-router-dom
 │   └── main.jsx          # Ponto de entrada da aplicação
 ├── projeto.md            # Orientações da entrega do curso
